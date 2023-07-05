@@ -1,0 +1,17 @@
+{
+  "name": "wojciechbladek",
+  "version": "1.0.0",
+  "description": "## About me ```javascript class QA {   firstName = \"Wojciech\"   lastName = \"Błądek\"   age = \"29\"   profession = \"Quality Assurance Engineer\"",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.35.1",
+    "prettier": "2.8.8"
+  },
+  "dependencies": {
+    "chai": "^4.3.7"
+  }
+}
