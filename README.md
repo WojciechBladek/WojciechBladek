@@ -3,11 +3,19 @@
 
 ## About me
 ```javascript
+
+interface User {
+  firstName: string;
+  lastName: string;
+  age: number;
+  profession: string;
+}
+
 class QA {
-  firstName = "Wojciech"
-  lastName = "Błądek"
-  age = "29"
-  profession = "Quality Assurance Engineer"
+  firstName: string = "Wojciech"
+  lastName: string = "Błądek"
+  age: number = 29
+  profession: string = "Quality Assurance Engineer"
       
   emailMe(){
     console.log("wojciechbladekk@gmail.com")
@@ -36,7 +44,7 @@ class QA {
     return 'Happy Clients'
   }
 }
-const wojciech = new QA();
+const wojciech: User = new QA();
 wojciech.aboutMe();
 wojciech.emailMe();
 wojciech.useMySkills();
@@ -62,9 +70,7 @@ src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&
 <img align="left" src= "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
 <img align="left" src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"/>
 
----
----
-
+<br />
 ## Projects coming soon
 - [coming soon] **UI automation tests using Playwright**
 - [coming soon] **Tests in Postman**
