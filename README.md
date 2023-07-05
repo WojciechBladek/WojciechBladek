@@ -63,6 +63,7 @@ src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&
 <img align="left" src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"/>
 
 ---
+
 ## Projects coming soon
 - [coming soon] **UI automation tests using Playwright**
 - [coming soon] **Tests in Postman**
