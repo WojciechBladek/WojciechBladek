@@ -63,6 +63,8 @@ wojciech.enjoyBetterQuality();
 <a href= "https://www.postman.com/"> <img align="left" height="27px" 
 src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat"/></a>
 
+<br />
+
 <img align="left" src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
 <img align="left" src= "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
 <img align="left" src= "https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red"/>
@@ -70,6 +72,7 @@ src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&
 <img align="left" src= "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
 <img align="left" src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"/>
 
+<br />
 <br />
 <br />
 
