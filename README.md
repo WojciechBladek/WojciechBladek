@@ -40,7 +40,7 @@ const wojciech = new QA();
 wojciech.aboutMe();
 wojciech.emailMe();
 wojciech.useMySkills();
-wojciech.enjoyBetterQuality()
+wojciech.enjoyBetterQuality();
 ```
 
 ## Connect with me 
