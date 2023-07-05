@@ -51,15 +51,16 @@ wojciech.enjoyBetterQuality()
 
 ## Expertise
 <a href="https://github.com/microsoft/playwright">
-  <img src="https://img.shields.io/badge/-Playwright-45ba4b?logo=playwright&logoColor=white&labelColor=45ba4b&style=flat" alt="Playwright" height="28px"></a>
-<a href= "https://www.postman.com/">
-<img height="27px" src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat" /></a>
-<img src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
-<img src= "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" />
-<img src= "https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red" />
-<img src= "https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white" />
-<img src= "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" />
-<img src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" />
+  <img align="left" src="https://img.shields.io/badge/-Playwright-45ba4b?logo=playwright&logoColor=white&labelColor=45ba4b&style=flat" alt="Playwright" height="28px"></a>
+<a href= "https://www.postman.com/"> <img align="left" height="27px" 
+src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat"/></a>
+
+<img align="left" src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
+<img align="left" src= "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+<img align="left" src= "https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red"/>
+<img align="left" src= "https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"/>
+<img align="left" src= "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
+<img align="left" src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"/>
 
 
 
