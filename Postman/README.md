@@ -9,7 +9,7 @@ Go to the postman
 
 - Import collection 
     1. Click Import
-    2. Attach file collection.postman.json
+    2. Attach file test1.postman.json
     
 <br/>
 
