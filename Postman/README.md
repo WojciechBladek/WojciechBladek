@@ -20,7 +20,7 @@ Go to the postman
 **Not all scripts will work properly, if you do not run them in the test runner, for example, the script for iterating through pages only works in the test runner should be remembered, it is executed there automatically.**
 
 # U can run collection by using NEWMAN
-Usee script bellow in terminal(IDE)
+Use script bellow in terminal(IDE)
 ```javascript
 newman run ./Postman/collection.postman.json -e ./Postman/DEV.postman_environment.json —-global-var
 ```
