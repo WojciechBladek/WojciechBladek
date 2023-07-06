@@ -22,5 +22,9 @@ Go to the postman
 # U can run collection by using NEWMAN
 Use script bellow in terminal(IDE)
 ```javascript
-newman run ./Postman/collection.postman.json -e ./Postman/DEV.postman_environment.json —-global-var
+newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var
+
+or
+
+npm run pt1
 ```
