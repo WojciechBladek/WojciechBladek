@@ -54,29 +54,29 @@ wojciech.enjoyBetterQuality();
 ```
 
 ## Connect with me 
-[<img align="center" alt="linked-in" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/wojciech-b%C5%82%C4%85dek-060a30222/)
-<a href="mailto:wojciechbladekk@gmail.com">
-  <img src="https://img.shields.io/badge/-Gmail-D14836?logo=gmail&logoColor=white&labelColor=D14836&style=flat" align="center" height="28px"></a>  
-  
-<br />
+[![Gmail](https://img.shields.io/badge/-Gmail-D14836?logo=gmail&logoColor=white&labelColor=D14836&style=flat)](mailto:wojciechbladekk@gmail.com)
+<a href="https://www.linkedin.com/in/wojciech-b%C5%82%C4%85dek-060a30222/">
+<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" height= "22px">
+</a>
+
+
+
 
 ## Expertise
-<a href="https://github.com/microsoft/playwright">
-  <img align="left" src="https://img.shields.io/badge/-Playwright-45ba4b?logo=playwright&logoColor=white&labelColor=45ba4b&style=flat" alt="Playwright" height="28px"></a>
-<a href= "https://www.postman.com/"> 
-  <img align="left" height="27px" 
-src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat"/></a>
-<img align="left" src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
-<img align="left" src= "https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-<img align="left" src= "https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red"/>
-<img align="left" src= "https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white"/>
-<img align="left" src= "https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white"/>
-<img align="left" src= "https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white"/>
+[![Playwright](https://img.shields.io/badge/-Playwright-45ba4b?logo=playwright&logoColor=white&labelColor=45ba4b&style=flat)](https://github.com/microsoft/playwright)
+[![Postman](https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat)](https://www.postman.com/)
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="22px">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" height="22px">
+<img src="https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red" height="22px">
+<img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white" height="22px">
+<img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" height="22px">
+<img src="https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" height="22px">
 
-<br />
-<br />
-<br />
-<br />
+
+
+
+
+
 
 ## Projects coming soon
 - [coming soon] **UI automation tests using Playwright**
