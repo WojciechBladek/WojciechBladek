@@ -78,7 +78,7 @@ src= "https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&
 
 ## Projects coming soon
 - [coming soon] **UI automation tests using Playwright**
-- [coming soon] **Tests in Postman**
+- [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman
 
 
 <!--
