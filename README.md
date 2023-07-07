@@ -62,3 +62,4 @@ wojciech.enjoyBetterQuality();
 ## Projects coming soon
 - [coming soon] **UI automation tests using Playwright**
 - [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman
+- [work in progress] **Here u can find something cool about Software Testing** - https://github.com/WojciechBladek/WojciechBladek/tree/main/SoftwareTesting
