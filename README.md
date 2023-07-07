@@ -60,6 +60,6 @@ wojciech.enjoyBetterQuality();
 <img src="https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" height="22px">
 
 ## Projects coming soon
-- [coming soon] **UI automation tests using Playwright**
+- [work in progress] **UI automation tests using Playwright** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Playwright
 - [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman
 - [work in progress] **Here u can find something cool about Software Testing** - https://github.com/WojciechBladek/WojciechBladek/tree/main/SoftwareTesting
