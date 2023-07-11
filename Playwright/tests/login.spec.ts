@@ -2,7 +2,7 @@ import { test, expect, Page } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
 
 test.describe("Login to the application", () => {
-  let loginPage: LoginPage
+  let loginPage: LoginPage;
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     await page.goto("/my-account", { waitUntil: "networkidle" });
@@ -30,10 +30,10 @@ test.describe("Login to the application", () => {
 
   test("Try login with incorrect Username", async ({ page }) => {
     //ACT
-    const incorrectUserName = 'Test12345@gm'
+    const incorrectUserName = "Test12345@gm";
 
     // ARRANGE
-    await loginPage.loginToApp(incorrectUserName,loginPage.password);
+    await loginPage.loginToApp(incorrectUserName, loginPage.password);
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
@@ -43,10 +43,10 @@ test.describe("Login to the application", () => {
 
   test("Try login with incorrect Password", async ({ page }) => {
     //ACT
-    const incorrectPassword = 'Test123@3!!@3'
+    const incorrectPassword = "Test123@3!!@3";
 
     // ARRANGE
-    await loginPage.loginToApp(loginPage.email,incorrectPassword);
+    await loginPage.loginToApp(loginPage.email, incorrectPassword);
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
