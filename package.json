@@ -4,7 +4,9 @@
   "description": "## About me ```javascript class QA {   firstName = \"Wojciech\"   lastName = \"Błądek\"   age = \"29\"   profession = \"Quality Assurance Engineer\"",
   "main": "index.js",
   "scripts": {
-    "pt1" : "newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var"
+    "PT1" : "newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var",
+    "TLogin" : "npx playwright test Playwright/tests/login.spec.ts",
+    "TLoginDebug" : "npx playwright test Playwright/tests/login.spec.ts --debug"
   },
   "keywords": [],
   "author": "",
