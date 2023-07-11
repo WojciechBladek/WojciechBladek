@@ -10,11 +10,11 @@ test.describe("Login to the application", () => {
 
   test("Login with correct username and password", async ({ page }) => {
     // ARRANGE
-    await loginPage.loginToApp(loginPage.email, loginPage.password);
+    await loginPage.loginToApp(loginPage.useEmail(), loginPage.usePassword());
 
     // ASSERT
     expect(await loginPage.loginConfirm.textContent()).toEqual(
-      `Hello ${loginPage.exceptedUserName} (not ${loginPage.exceptedUserName}? Log out)`
+      `Hello ${loginPage.useExceptedUserName()} (not ${loginPage.useExceptedUserName()}? Log out)`
     );
   });
 
@@ -33,7 +33,7 @@ test.describe("Login to the application", () => {
     const incorrectUserName = "Test12345@gm";
 
     // ARRANGE
-    await loginPage.loginToApp(incorrectUserName, loginPage.password);
+    await loginPage.loginToApp(incorrectUserName, loginPage.usePassword());
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
@@ -46,11 +46,11 @@ test.describe("Login to the application", () => {
     const incorrectPassword = "Test123@3!!@3";
 
     // ARRANGE
-    await loginPage.loginToApp(loginPage.email, incorrectPassword);
+    await loginPage.loginToApp(loginPage.useEmail(), incorrectPassword);
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
-      `Error: The password you entered for the username ${loginPage.email} is incorrect. Lost your password?`
+      `Error: The password you entered for the username ${loginPage.useEmail()} is incorrect. Lost your password?`
     );
   });
 });
