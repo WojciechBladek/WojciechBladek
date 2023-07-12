@@ -1,5 +1,6 @@
 import { test, expect, Page } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
+import { faker } from "@faker-js/faker";
 
 test.describe("Login to the application", () => {
   let loginPage: LoginPage;
@@ -30,7 +31,7 @@ test.describe("Login to the application", () => {
 
   test("Try login with incorrect Username", async ({ page }) => {
     //ACT
-    const incorrectUserName = "Test12345@gm";
+    const incorrectUserName = faker.internet.userName();
 
     // ARRANGE
     await loginPage.loginToApp(incorrectUserName, loginPage.usePassword());
@@ -41,9 +42,22 @@ test.describe("Login to the application", () => {
     );
   });
 
+  test("Try login with incorrect email adress", async ({ page }) => {
+    //ACT
+    const incorrectEmail = faker.internet.email();
+
+    // ARRANGE
+    await loginPage.loginToApp(incorrectEmail, loginPage.usePassword());
+
+    // ASSERT
+    expect(await loginPage.loginError.textContent()).toEqual(
+      'Error: A user could not be found with this email address.'
+    );
+  });
+
   test("Try login with incorrect Password", async ({ page }) => {
     //ACT
-    const incorrectPassword = "Test123@3!!@3";
+    const incorrectPassword = faker.internet.password();
 
     // ARRANGE
     await loginPage.loginToApp(loginPage.useEmail(), incorrectPassword);
