@@ -11,7 +11,7 @@ const loginDataFile = () => {
       return loginData;
     }
   } catch (error) {
-    console.log(`Error private content: ${error}`);
+    console.log("This file can be read only in CI process");
   }
 };
 export class LoginPage {
