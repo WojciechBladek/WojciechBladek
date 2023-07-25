@@ -1,25 +1,30 @@
-import { test, expect, Page } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/login.page";
 import { faker } from "@faker-js/faker";
+import { Authentication, loginData } from "../helper/auth.helper";
+
 
 test.describe("Login to the application", () => {
   let loginPage: LoginPage;
+  let auth: Authentication;
+
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
+    auth = new Authentication(loginData);
     await page.goto("/my-account", { waitUntil: "networkidle" });
   });
 
-  test("Login with correct username and password", async ({ page }) => {
+  test("Login with correct username and password", async () => {
     // ARRANGE
-    await loginPage.loginToApp(loginPage.useEmail(), loginPage.usePassword());
+    await loginPage.loginToApp(auth.email, auth.password);
 
     // ASSERT
     expect(await loginPage.loginConfirm.textContent()).toEqual(
-      `Hello ${loginPage.useExceptedUserName()} (not ${loginPage.useExceptedUserName()}? Log out)`
+      `Hello ${loginPage.exceptedUserName} (not ${loginPage.exceptedUserName}? Log out)`
     );
   });
 
-  test("Try login without username and password", async ({ page }) => {
+  test("Try login without username and password", async () => {
     // ARRANGE
     await loginPage.loginToApp();
 
@@ -29,12 +34,12 @@ test.describe("Login to the application", () => {
     );
   });
 
-  test("Try login with incorrect Username", async ({ page }) => {
+  test("Try login with incorrect Username", async () => {
     //ACT
     const incorrectUserName = faker.internet.userName();
 
     // ARRANGE
-    await loginPage.loginToApp(incorrectUserName, loginPage.usePassword());
+    await loginPage.loginToApp(incorrectUserName, auth.password);
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
@@ -42,11 +47,26 @@ test.describe("Login to the application", () => {
     );
   });
 
+
+  test("Try login with incorrect email adress", async () => {
+
   test("Try login with incorrect email adress", async ({ page }) => {
+
     //ACT
     const incorrectEmail = faker.internet.email();
 
     // ARRANGE
+
+    await loginPage.loginToApp(incorrectEmail, auth.password);
+
+    // ASSERT
+    expect(await loginPage.loginError.textContent()).toEqual(
+      "Error: A user could not be found with this email address."
+    );
+  });
+
+  test("Try login with incorrect Password", async () => {
+
     await loginPage.loginToApp(incorrectEmail, loginPage.usePassword());
 
     // ASSERT
@@ -56,15 +76,16 @@ test.describe("Login to the application", () => {
   });
 
   test("Try login with incorrect Password", async ({ page }) => {
+
     //ACT
     const incorrectPassword = faker.internet.password();
 
     // ARRANGE
-    await loginPage.loginToApp(loginPage.useEmail(), incorrectPassword);
+    await loginPage.loginToApp(auth.email, incorrectPassword);
 
     // ASSERT
     expect(await loginPage.loginError.textContent()).toEqual(
-      `Error: The password you entered for the username ${loginPage.useEmail()} is incorrect. Lost your password?`
+      `Error: The password you entered for the username ${auth.email} is incorrect. Lost your password?`
     );
   });
 });
