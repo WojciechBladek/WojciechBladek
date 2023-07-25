@@ -1,6 +1,5 @@
-export class LocatorHelper {
-  constructor() {}
-  async getTestId(testId: string) {
-    return `[data-testid="${testId}"]`;
-  }
-}
+const getTestId = (testId: string) => `[data-testid="${testId}"]`;
+
+export const locatorHelper = {
+  getTestId,
+};

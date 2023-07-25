@@ -1,26 +1,27 @@
-import { test, expect, Page, Locator } from "@playwright/test";
+import { Page } from "@playwright/test";
 
-export class CookieData {
-  constructor() {}
-  //TODO: add locator
-  cookieButtonLocator = "locator";
-  cookieButton(page: Page) {
-    return page.locator(this.cookieButtonLocator);
-  }
+//TODO: add locator
+const cookieButtonLocator = "locator";
+const cookieButton = (page: Page) => {
+  return page.locator(cookieButtonLocator);
+};
 
-  async clickCookieBaner(page: Page) {
-    try {
-      const cookieButtonFound = await page
-        .waitForSelector(this.cookieButtonLocator, { timeout: 3000 })
-        .catch(() => {
-          console.log("coookie banner not found");
-        });
+const clickCookieBaner = async (page: Page) => {
+  try {
+    const cookieButtonFound = await page
+      .waitForSelector(cookieButtonLocator, { timeout: 3000 })
+      .catch(() => {
+        console.log("coookie banner not found");
+      });
 
-      if (cookieButtonFound) {
-        await this.cookieButton(page).click();
-      }
-    } catch (error) {
-      console.log(`Error: ${error}`);
+    if (cookieButtonFound) {
+      await cookieButton(page).click();
     }
+  } catch (error) {
+    console.log(`Error: ${error}`);
   }
-}
+};
+
+export const cookieData = {
+  clickCookieBaner,
+};
