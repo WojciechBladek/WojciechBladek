@@ -3,6 +3,7 @@ import { LoginPage } from "../pages/login.page";
 import { faker } from "@faker-js/faker";
 import { Authentication, loginData } from "../helper/auth.helper";
 
+
 test.describe("Login to the application", () => {
   let loginPage: LoginPage;
   let auth: Authentication;
@@ -46,11 +47,16 @@ test.describe("Login to the application", () => {
     );
   });
 
+
   test("Try login with incorrect email adress", async () => {
+
+  test("Try login with incorrect email adress", async ({ page }) => {
+
     //ACT
     const incorrectEmail = faker.internet.email();
 
     // ARRANGE
+
     await loginPage.loginToApp(incorrectEmail, auth.password);
 
     // ASSERT
@@ -60,6 +66,17 @@ test.describe("Login to the application", () => {
   });
 
   test("Try login with incorrect Password", async () => {
+
+    await loginPage.loginToApp(incorrectEmail, loginPage.usePassword());
+
+    // ASSERT
+    expect(await loginPage.loginError.textContent()).toEqual(
+      'Error: A user could not be found with this email address.'
+    );
+  });
+
+  test("Try login with incorrect Password", async ({ page }) => {
+
     //ACT
     const incorrectPassword = faker.internet.password();
 
