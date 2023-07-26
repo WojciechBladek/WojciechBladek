@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import Imap from "imap";
-import { listenForNewMessages } from "../../../mailBox";
+import { listenForNewMessages } from "../fixtures/mailBox";
 
 export class LoginPage {
   constructor(private page: Page) {}
@@ -20,13 +20,14 @@ export class LoginPage {
     const loginPage = new LoginPage(page);
     await loginPage.generateMagicLink(userRole);
     const magicLink = await listenForNewMessages(config);
-    console.log(magicLink);
     await page.goto(magicLink, { waitUntil: "networkidle" });
     await page.context().storageState({ path: path });
   }
 
   async generateMagicLink(emailId: string) {
-    await this.page.goto("/auth/magic-link-login");
+    await this.page.goto("/auth/magic-link-login", {
+      waitUntil: "networkidle",
+    });
     await this.page.getByRole("button", { name: "Accept" }).click();
     await this.magicLinkInput.fill(emailId);
     await this.button.first().click();

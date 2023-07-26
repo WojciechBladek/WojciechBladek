@@ -1,35 +1,38 @@
 //import { test, expect} from '@playwright/test';
-import { imapConfigAdmin } from "../../../mailBox";
+import { imapConfigAdmin } from "../fixtures/mailBox";
 import { Api } from "../fixtures/api.fixtures";
 import { Users } from "../fixtures/users.fixtures";
 import { CsvPage } from "../pages/csv.pages";
 import { test, expect } from "../fixtures/users.fixtures";
 
 const user = new Api(Users.authFileUser, Users.user);
-//const admin = new Api(Users.authFileAdmin, Users.userAdmin)
+const admin = new Api(Users.authFileAdmin, Users.userAdmin);
 
 test.describe("Test csv features request, download", async () => {
   test.use({ storageState: Users.authFileUser });
   let csvPage: CsvPage;
   let nonLoggedCsv: CsvPage;
-  test.beforeEach(async ({ page, request, UnloggedUserPage }) => {
+  let adminCsv: CsvPage;
+
+  test.beforeEach(async ({ page, request, unloggedUserPage, adminPage }) => {
     csvPage = new CsvPage(page);
-    nonLoggedCsv = new CsvPage(UnloggedUserPage.page);
+    nonLoggedCsv = new CsvPage(unloggedUserPage.page);
+    adminCsv = new CsvPage(adminPage.page);
 
     await user.checkIfTokenIsActive(page, request, imapConfigAdmin);
     await page.goto("/", { waitUntil: "networkidle" });
   });
 
   test("Click download csv as non logged user", async ({
-    UnloggedUserPage,
+    unloggedUserPage,
   }) => {
     // Act
-    await UnloggedUserPage.page.goto("/");
+    await unloggedUserPage.page.goto("/");
     await nonLoggedCsv.csvButtonDownload.click();
 
     // Assert
     await expect
-      .soft(UnloggedUserPage.page)
+      .soft(unloggedUserPage.page)
       .toHaveURL("/auth/magic-link-login");
     await expect
       .soft(nonLoggedCsv.accountRequired)
@@ -135,9 +138,44 @@ test.describe("Test csv features request, download", async () => {
     // Assert
     await expect.soft(response).toBe(200);
   });
+
+  test("Generate subcription token", async ({ request }) => {
+    // Act
+    const userId = await admin.requestGet(
+      request,
+      admin.endpoints.userMe,
+      admin.loggedHeaders.authBearerToken
+    );
+    const generateTokenData = {
+      userId: userId.id,
+      tokenValidityInDays: 15,
+      subscriptionType: "premium",
+    };
+
+    const generateTokenResponse = await admin.requestPost(
+      request,
+      admin.endpoints.generateSubscriptionToken,
+      admin.loggedHeaders.envAuthToken,
+      generateTokenData
+    );
+    // Assert
+    await expect(generateTokenResponse).toBeOK();
+  });
+  test("Download csv file as user", async ({ adminPage }) => {
+    // Act
+    await adminPage.page.goto("/");
+    const resultPromise = admin.resultPromise(
+      adminPage.page,
+      admin.endpoints.exportCsv
+    );
+    await adminCsv.csvButtonDownload.click();
+    const response = (await resultPromise).status();
+
+    // Assert
+    await expect.soft(response).toBe(200);
+  });
   //TODO:
   // need to create a new accounts with aliases.
-  // add test for generate tokens
-  // download as user with token
+  // add test for generate token for organisation
   // downaload as user with organization - token
 });

@@ -1,8 +1,12 @@
 import { test, expect } from "@playwright/test";
-import { imapConfigUser } from "../../../mailBox";
+import { imapConfigUser } from "../fixtures/mailBox";
+import { mockJson } from "../fixtures/api-mocks.fixtures";
 import { Api } from "../fixtures/api.fixtures";
+import { Faker } from "../fixtures/faker.fixtures";
 import { Users } from "../fixtures/users.fixtures";
 import { RegistrationPage } from "../pages/registration.pages";
+
+const { userMeMock, mockApiResponseUserMe } = mockJson;
 
 const user = new Api(Users.authFileUser, Users.user);
 
@@ -15,12 +19,15 @@ test.describe("Registration flow", async () => {
     const userId = await user.requestGet(
       request,
       user.endpoints.userMe,
-      user.loggedHeaders
+      user.loggedHeaders.authBearerToken
     );
-    registration = new RegistrationPage(page, Users.user, userId.id);
+    registration = new RegistrationPage(page);
     await user.checkIfTokenIsActive(page, request, imapConfigUser);
-    //Mock data is used, temporarily
-    await registration.mockApiResponseUserMe();
+    await mockApiResponseUserMe(
+      page,
+      user.endpoints.userMe,
+      userMeMock(Users.user, userId.id)
+    );
     await page.goto("/", { waitUntil: "networkidle" });
   });
 
@@ -29,44 +36,44 @@ test.describe("Registration flow", async () => {
     const userProfile = await user.requestGet(
       request,
       user.endpoints.userMe,
-      user.loggedHeaders
+      user.loggedHeaders.authBearerToken
     );
 
     // Asert
-    await expect(userProfile).toHaveProperty("email", Users.user);
-    await expect(page).toHaveURL("/auth/register");
+    await expect.soft(userProfile).toHaveProperty("email", Users.user);
+    await expect.soft(page).toHaveURL("/auth/register");
   });
 
   test("Step 1 fill firstName when all fields are mandatory", async ({
     page,
   }) => {
     // Act
-    await registration.firstNameInput.fill(registration.fakerFirstName);
+    await registration.firstNameInput.fill(Faker.fakerFirstName);
 
     // Assert
-    await expect(registration.firstNameInput).toHaveValue(
-      registration.fakerFirstName
-    );
+    await expect
+      .soft(registration.firstNameInput)
+      .toHaveValue(Faker.fakerFirstName);
     await registration.continueButton.click();
-    await expect(registration.inputError.last()).toHaveText(
-      registration.inputErrorText
-    );
+    await expect
+      .soft(registration.inputError.last())
+      .toHaveText(registration.inputErrorText);
   });
 
   test("Step 1 fill lastName when all fields are mandatory", async ({
     page,
   }) => {
     // Act
-    await registration.lastNameInput.fill(registration.fakerLastName);
+    await registration.lastNameInput.fill(Faker.fakerLastName);
 
     // Assert
-    await expect(registration.lastNameInput).toHaveValue(
-      registration.fakerLastName
-    );
+    await expect
+      .soft(registration.lastNameInput)
+      .toHaveValue(Faker.fakerLastName);
     await registration.continueButton.click();
-    await expect(registration.inputError.first()).toHaveText(
-      registration.inputErrorText
-    );
+    await expect
+      .soft(registration.inputError.first())
+      .toHaveText(registration.inputErrorText);
   });
 
   test("Step 1 try to go to next step with empty firstName and lastName", async ({
@@ -78,12 +85,12 @@ test.describe("Registration flow", async () => {
 
     // Assert
     await registration.continueButton.click();
-    await expect(registration.inputError.first()).toHaveText(
-      registration.inputErrorText
-    );
-    await expect(registration.inputError.last()).toHaveText(
-      registration.inputErrorText
-    );
+    await expect
+      .soft(registration.inputError.first())
+      .toHaveText(registration.inputErrorText);
+    await expect
+      .soft(registration.inputError.last())
+      .toHaveText(registration.inputErrorText);
   });
 
   test("Step 1 fill firstName and lastName with special characters", async ({
@@ -91,20 +98,20 @@ test.describe("Registration flow", async () => {
   }) => {
     // Act
     await registration.firstNameInput.fill(
-      `${registration.fakerFirstName}${registration.specialCharacters}`
+      `${Faker.fakerFirstName}${registration.specialCharacters}`
     );
     await registration.lastNameInput.fill(
-      `${registration.fakerLastName}${registration.specialCharacters}`
+      `${Faker.fakerLastName}${registration.specialCharacters}`
     );
 
     // Assert
     await registration.continueButton.click();
-    await expect(registration.inputError.first()).toHaveText(
-      registration.regexErrorText
-    );
-    await expect(registration.inputError.last()).toHaveText(
-      registration.regexErrorText
-    );
+    await expect
+      .soft(registration.inputError.first())
+      .toHaveText(registration.regexErrorText);
+    await expect
+      .soft(registration.inputError.last())
+      .toHaveText(registration.regexErrorText);
   });
 
   test("Step 1 fill firstName and lastName with 1 character", async ({
@@ -116,12 +123,12 @@ test.describe("Registration flow", async () => {
 
     // Assert
     await registration.continueButton.click();
-    await expect(registration.inputError.first()).toHaveText(
-      registration.minLengthError
-    );
-    await expect(registration.inputError.last()).toHaveText(
-      registration.minLengthError
-    );
+    await expect
+      .soft(registration.inputError.first())
+      .toHaveText(registration.minLengthError);
+    await expect
+      .soft(registration.inputError.last())
+      .toHaveText(registration.minLengthError);
   });
 
   test("Step 1 check toggle button behavior hide my lastName", async ({
@@ -131,28 +138,28 @@ test.describe("Registration flow", async () => {
     await registration.toggleSlider.setChecked(true);
 
     // Assert
-    await expect(registration.toggleSlider).toBeChecked();
+    await expect.soft(registration.toggleSlider).toBeChecked();
   });
-  //TODO:
-  test("Create new organisation", async ({ page, request }) => {
+
+  test("Create new organisation", async ({ page }) => {
     // Arrange
-    const organisationName = registration.fakerOrganisationName;
+    const organisationName = Faker.fakerOrganisationName;
 
     // Act
-    await registration.firstNameInput.fill(registration.fakerFirstName);
-    await registration.lastNameInput.fill(registration.fakerLastName);
+    await registration.firstNameInput.fill(Faker.fakerFirstName);
+    await registration.lastNameInput.fill(Faker.fakerLastName);
 
     // Assert
-    await expect(registration.firstNameInput).toHaveValue(
-      registration.fakerFirstName
-    );
-    await expect(registration.lastNameInput).toHaveValue(
-      registration.fakerLastName
-    );
+    await expect
+      .soft(registration.firstNameInput)
+      .toHaveValue(Faker.fakerFirstName);
+    await expect
+      .soft(registration.lastNameInput)
+      .toHaveValue(Faker.fakerLastName);
     await registration.continueButton.click();
-    await expect(await registration.currentStep.textContent()).toEqual(
-      registration.step2
-    );
+    await expect
+      .soft((await registration.currentStep.textContent()).trim())
+      .toEqual(registration.step2);
 
     await test.step("Check if the pill has the same organization name that was entered", async () => {
       // Act
@@ -161,9 +168,9 @@ test.describe("Registration flow", async () => {
       await registration.organisationDropDownOpen.click();
 
       // Assert
-      await expect(await registration.autocompletePill.textContent()).toEqual(
-        organisationName
-      );
+      await expect
+        .soft(await registration.autocompletePill.textContent())
+        .toEqual(organisationName);
     });
 
     await test.step("Should open modal to create new organisation", async () => {
@@ -171,33 +178,57 @@ test.describe("Registration flow", async () => {
       await registration.autocompletePill.click();
 
       // Assert
-      await expect(registration.createOrganisationModal).toBeVisible();
+      await expect.soft(registration.createOrganisationModal).toBeVisible();
     });
-    //TODO:
+
     await test.step("Text in modal input is equal to organisation name", async () => {
       // Assert
-      await expect(
-        await registration.createNewOrgModalInputName.inputValue()
-      ).toEqual(organisationName);
+      await expect
+        .soft(await registration.createNewOrgModalInputName.inputValue())
+        .toEqual(organisationName);
+    });
+
+    await test.step("Add acronym for organisation", async () => {
+      // Act
+      await registration.createOrgModalSlider.setChecked(true);
+      await registration.createNewOrgModalInputAcronym.fill(
+        Faker.fakerOrganisationAcronym
+      );
+      await registration.countryDropDownOpen.click();
+      await registration.organisationDropDownItem.last().click();
+
+      await page.waitForTimeout(1000);
+      const resultPromise = user.resultPromise(
+        page,
+        user.endpoints.createNewOrganisation
+      );
+      await registration.createNewOrganisationButton.click();
+      const response = (await resultPromise).status();
+      // Assert
+
+      await expect.soft(response).toBe(201);
+      await expect
+        .soft(await registration.organisationInput.inputValue())
+        .toEqual(organisationName);
     });
   });
 
   test("Create user profile with organisation", async ({ page, request }) => {
     // Act
-    await registration.firstNameInput.fill(registration.fakerFirstName);
-    await registration.lastNameInput.fill(registration.fakerLastName);
+    await registration.firstNameInput.fill(Faker.fakerFirstName);
+    await registration.lastNameInput.fill(Faker.fakerLastName);
 
     // Assert
-    await expect(registration.firstNameInput).toHaveValue(
-      registration.fakerFirstName
-    );
-    await expect(registration.lastNameInput).toHaveValue(
-      registration.fakerLastName
-    );
+    await expect
+      .soft(registration.firstNameInput)
+      .toHaveValue(Faker.fakerFirstName);
+    await expect
+      .soft(registration.lastNameInput)
+      .toHaveValue(Faker.fakerLastName);
     await registration.continueButton.click();
-    await expect(await registration.currentStep.textContent()).toEqual(
-      registration.step2
-    );
+    await expect
+      .soft((await registration.currentStep.textContent()).trim())
+      .toEqual(registration.step2);
 
     await test.step("Select organisation from dropdown", async () => {
       // Act
@@ -205,12 +236,12 @@ test.describe("Registration flow", async () => {
       await registration.organisationDropDownItem.first().click();
 
       // Assert
-      await expect(registration.firstNameInput).toHaveValue(
-        registration.fakerFirstName
-      );
-      await expect(registration.lastNameInput).toHaveValue(
-        registration.fakerLastName
-      );
+      await expect
+        .soft(registration.firstNameInput)
+        .toHaveValue(Faker.fakerFirstName);
+      await expect
+        .soft(registration.lastNameInput)
+        .toHaveValue(Faker.fakerLastName);
     });
     await test.step("Agree terms of service and done registration  ", async () => {
       // Act
@@ -218,30 +249,30 @@ test.describe("Registration flow", async () => {
       await registration.checkBoxTerms.setChecked(true);
 
       // Assert
-      await expect(registration.checkBoxTerms).toBeChecked();
-      await expect(await registration.currentStep.textContent()).toEqual(
-        registration.step3
-      );
+      await expect.soft(registration.checkBoxTerms).toBeChecked();
+      await expect
+        .soft((await registration.currentStep.textContent()).trim())
+        .toEqual(registration.step3);
     });
     await test.step("User profile was created  ", async () => {
       // Act
       await registration.continueButton.click();
 
       // Assert
-      await expect(
-        await registration.toastAccountCreated
-          .textContent()
-          .then((el) => el?.trim())
-      ).toEqual(registration.expectAccountCreated);
+      await expect
+        .soft((await registration.toastAccountCreated.textContent()).trim())
+        .toEqual(registration.expectAccountCreated);
       const userMeResponse = await user.requestGet(
         request,
         user.endpoints.userMe,
-        user.loggedHeaders
+        user.loggedHeaders.authBearerToken
       );
-      await expect(userMeResponse).toHaveProperty(
-        "registrationStatus",
-        "awating_to_assign_to_organisation"
-      );
+      await expect
+        .soft(userMeResponse)
+        .toHaveProperty(
+          "registrationStatus",
+          "awating_to_assign_to_organisation"
+        );
     });
   });
 });
