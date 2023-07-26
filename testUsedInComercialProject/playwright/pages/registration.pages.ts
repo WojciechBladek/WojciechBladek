@@ -1,46 +1,27 @@
-import { faker } from "@faker-js/faker";
 import { Page } from "@playwright/test";
-import fs from "fs";
-import { Api } from "../fixtures/api.fixtures";
+import { lokalise } from "../helper/read-translations.helper";
 
-const localisation = fs.readFileSync("src/assets/localisation/en.json", {
-  encoding: "utf8",
-});
-const translations = JSON.parse(localisation);
-const registrationTranslations = translations.auth;
-
-const API = new Api();
 export class RegistrationPage {
-  constructor(
-    private page: Page,
-    private userRole?: string,
-    private id?: string
-  ) {}
-  userMeMock = {
-    nickname: null,
-    email: this.userRole,
-    firstName: null,
-    lastName: null,
-    registrationStatus: "require_profile_update",
-    id: this.id,
-    organisation: null,
-    notifications: true,
-    reminders: false,
-    role: 0,
-    hideLastName: false,
-    validityTimeInDays: null,
-    plan: null,
-  };
+  constructor(private page: Page) {}
+
+  //multiple re-used locators
+  sliderLocator = "slider";
+  organisationModalLocator = "organisation-modal";
+  organisationModalInputLocator = "organisation-modal-input";
+  inputLocator = "input";
+  autoCompleteIconLocator = "autocomplete__icon";
 
   firstNameInput = this.page.getByTestId("firstName");
   lastNameInput = this.page.getByTestId("lastName");
   continueButton = this.page.getByTestId("continue-button");
   currentStep = this.page.getByTestId("wrapper__current-step");
   inputError = this.page.getByTestId("input__error");
-  toggleSlider = this.page.getByTestId("slider");
+  toggleSlider = this.page.getByTestId(this.sliderLocator);
 
   organisationDropDown = this.page.getByTestId("autocomplete-loop-input");
-  organisationDropDownOpen = this.page.getByTestId("autocomplete__icon");
+  organisationDropDownOpen = this.page.getByTestId(
+    this.autoCompleteIconLocator
+  );
   organisationDropDownItem = this.page.getByTestId(
     "autocomplete-loop-select-option"
   );
@@ -48,41 +29,43 @@ export class RegistrationPage {
   toastAccountCreated = this.page.getByTestId("toast-message");
   autocompletePill = this.page.getByTestId("autocomplete__pill");
 
-  createOrganisationModal = this.page.getByTestId("organisation-modal");
-  organisationSearch = this.organisationDropDown.getByTestId(
-    "organisation-modal-input"
+  createOrganisationModal = this.page.getByTestId(
+    this.organisationModalLocator
   );
-  organisation = this.page.getByTestId("organisation-modal-input");
+  organisationSearch = this.organisationDropDown.getByTestId(
+    this.organisationModalInputLocator
+  );
+  organisation = this.page.getByTestId(this.organisationModalInputLocator);
   organisationInput = this.page.locator("#input1");
 
+  countryDropDownOpen = this.page
+    .getByTestId(this.organisationModalLocator)
+    .getByTestId(this.autoCompleteIconLocator);
+  createNewOrganisationButton = this.createOrganisationModal
+    .getByTestId("button")
+    .last();
+  createOrgModalSlider = this.createOrganisationModal.getByTestId(
+    this.sliderLocator
+  );
   createNewOrgModalInputName = this.createOrganisationModal
-    .getByTestId("organisation-modal-input")
-    .locator("> input")
+    .getByTestId(this.organisationModalInputLocator)
+    .locator(`> ${this.inputLocator}`)
     .first();
+  createNewOrgModalInputAcronym = this.createOrganisationModal
+    .getByTestId(this.organisationModalInputLocator)
+    .locator(`> ${this.inputLocator}`)
+    .nth(1);
 
-  fakerFirstName = faker.person.firstName();
-  fakerLastName = faker.person.lastName();
-  fakerOrganisationName = faker.company.name();
-  expectAccountCreated =
-    registrationTranslations.acceptTerms.userCreatedToast.success;
+  expectAccountCreated = lokalise.auth.acceptTerms.userCreatedToast.success;
   specialCharacters = "@!$%^&&*@";
   step1 = "Step 1 of 3";
   step2 = "Step 2 of 3";
   step3 = "Step 3 of 3";
-  inputErrorText =
-    registrationTranslations.registerIndividual.form.errors.required;
-  regexErrorText =
-    registrationTranslations.registerIndividual.form.errors.pattern;
+  inputErrorText = lokalise.auth.registerIndividual.form.errors.required;
+  regexErrorText = lokalise.auth.registerIndividual.form.errors.pattern;
   minLengthError =
-    registrationTranslations.registerIndividual.form.errors.minLength.replace(
+    lokalise.auth.registerIndividual.form.errors.minLength.replace(
       "{{requiredLength}}",
       "2"
     );
-
-  async mockApiResponseUserMe() {
-    await this.page.route(`*/**/${API.endpoints.userMe}`, async (route) => {
-      const json = this.userMeMock;
-      await route.fulfill({ json });
-    });
-  }
 }

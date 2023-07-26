@@ -1,5 +1,5 @@
 import { test as setup } from "@playwright/test";
-import { imapConfigAdmin, imapConfigUser } from "../../../mailBox";
+import { imapConfigAdmin, imapConfigUser } from "../fixtures/mailBox";
 import { LoginPage } from "../pages/login.pages";
 import { Users } from "../fixtures/users.fixtures";
 

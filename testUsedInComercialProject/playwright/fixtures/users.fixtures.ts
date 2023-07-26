@@ -1,5 +1,5 @@
 import { test as base, type Page, type Locator } from "@playwright/test";
-import { envData } from "../../../mailBox";
+import { envData } from "./mailBox";
 
 class AdminPage {
   page: Page;
@@ -28,7 +28,7 @@ class UnloggedUserPage {
 type MyFixtures = {
   adminPage: AdminPage;
   userPage: UserPage;
-  UnloggedUserPage: UnloggedUserPage;
+  unloggedUserPage: UnloggedUserPage;
 };
 
 export * from "@playwright/test";
@@ -51,7 +51,7 @@ export const test = base.extend<MyFixtures>({
     await context.close();
   },
 
-  UnloggedUserPage: async ({ browser }, use) => {
+  unloggedUserPage: async ({ browser }, use) => {
     const context = await browser.newContext({
       storageState: Users.authFileUnlogged,
     });

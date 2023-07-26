@@ -1,25 +1,36 @@
 import { Page } from "@playwright/test";
 import Imap from "imap";
+import { envData } from "./mailBox";
 import { APIRequestContext } from "playwright-core";
 import { LoginPage } from "../pages/login.pages";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require("fs");
 
 export class Api {
-  //remember to use at least the path parameter to access the token
+  // parameter path is required to get authorization token
+  // parameter userRole is used to authenticate when token lost validation
   constructor(private path?: string, private userRole?: string) {}
 
-  url = "********************";
+  url = "****************";
 
   endpoints = {
     userMe: "api/v1/user/me",
     subscriptionRequest: "api/v1/subscription/request",
     recordCsvActivity: "api/v1/export/user-csv-activity",
+    createNewOrganisation: "api/v1/organisation",
+    generateSubscriptionToken: "api/v1/subscription/generate-token",
+    exportCsv: "api/v1/export/csv",
   };
 
   loggedHeaders = {
-    Authorization: `Bearer ${this.getAccessToken()}`,
+    envAuthToken: {
+      Authorization: envData.basicToken,
+    },
+    authBearerToken: {
+      Authorization: `Bearer ${this.getAccessToken()}`,
+    },
   };
+
   resultPromise(page, endpoint) {
     return page.waitForResponse(`${this.url}${endpoint}`);
   }
@@ -31,13 +42,25 @@ export class Api {
   async requestGet(
     request: APIRequestContext,
     endpoint: string,
-    header: { [key: string]: string }
+    header?: { [key: string]: string }
   ) {
     const sendRequest = await request.get(`${this.url}${endpoint}`, {
       headers: header,
     });
     const response = await sendRequest.json();
     return response;
+  }
+
+  async requestPost(
+    request: APIRequestContext,
+    endpoint: string,
+    header: { [key: string]: string },
+    body: object
+  ) {
+    return await request.post(`${this.url}${endpoint}`, {
+      data: body,
+      headers: header,
+    });
   }
 
   async checkIfTokenIsActive(
@@ -47,7 +70,7 @@ export class Api {
   ) {
     const checkToken = await request.get(
       `${this.url}${this.endpoints.userMe}`,
-      { headers: this.loggedHeaders }
+      { headers: this.loggedHeaders.authBearerToken }
     );
 
     if (await checkToken.ok()) {
