@@ -1,10 +1,6 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
-const mockApiResponseUserMe = async (
-  page: Page,
-  endpoint: string,
-  objectJson: object
-) => {
+const mockApiResponseUserMe = async (page: Page, endpoint: string, objectJson: object) => {
   await page.route(`*/**/${endpoint}`, async (route) => {
     const json = objectJson;
     await route.fulfill({ json });
@@ -18,7 +14,7 @@ const userMeMock = (userRole, userId) => {
     email: userRole,
     firstName: null,
     lastName: null,
-    registrationStatus: "require_profile_update",
+    registrationStatus: 'require_profile_update',
     id: userId,
     organisation: null,
     notifications: true,

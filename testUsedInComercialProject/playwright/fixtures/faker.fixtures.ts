@@ -1,4 +1,4 @@
-import { faker } from "@faker-js/faker";
+import { faker } from '@faker-js/faker';
 
 const fakerFirstName = faker.person.firstName();
 const fakerLastName = faker.person.lastName();
