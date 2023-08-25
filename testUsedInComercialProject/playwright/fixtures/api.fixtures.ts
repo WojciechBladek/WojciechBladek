@@ -1,25 +1,28 @@
-import { Page } from "@playwright/test";
-import Imap from "imap";
-import { envData } from "./mailBox";
-import { APIRequestContext } from "playwright-core";
-import { LoginPage } from "../pages/login.pages";
+import { Page } from '@playwright/test';
+import Imap from 'imap';
+import { envData } from 'mailBox';
+import { APIRequestContext } from 'playwright-core';
+import { LoginPage } from 'playwright/pages/login.pages';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require("fs");
+const fs = require('fs');
 
 export class Api {
   // parameter path is required to get authorization token
   // parameter userRole is used to authenticate when token lost validation
-  constructor(private path?: string, private userRole?: string) {}
+  constructor(
+    private path?: string,
+    private userRole?: string,
+  ) {}
 
-  url = "****************";
+  url = 'urlComercialProject';
 
   endpoints = {
-    userMe: "api/v1/user/me",
-    subscriptionRequest: "api/v1/subscription/request",
-    recordCsvActivity: "api/v1/export/user-csv-activity",
-    createNewOrganisation: "api/v1/organisation",
-    generateSubscriptionToken: "api/v1/subscription/generate-token",
-    exportCsv: "api/v1/export/csv",
+    userMe: 'api/v1/user/me',
+    subscriptionRequest: 'api/v1/subscription/request',
+    recordCsvActivity: 'api/v1/export/user-csv-activity',
+    createNewOrganisation: 'api/v1/organisation',
+    generateSubscriptionToken: 'api/v1/subscription/generate-token',
+    exportCsv: 'api/v1/export/csv',
   };
 
   loggedHeaders = {
@@ -39,50 +42,27 @@ export class Api {
     return page.waitForRequest(`${this.url}${endpoint}`);
   }
 
-  async requestGet(
-    request: APIRequestContext,
-    endpoint: string,
-    header?: { [key: string]: string }
-  ) {
-    const sendRequest = await request.get(`${this.url}${endpoint}`, {
-      headers: header,
-    });
+  async requestGet(request: APIRequestContext, endpoint: string, header?: { [key: string]: string }) {
+    const sendRequest = await request.get(`${this.url}${endpoint}`, { headers: header });
     const response = await sendRequest.json();
     return response;
   }
 
-  async requestPost(
-    request: APIRequestContext,
-    endpoint: string,
-    header: { [key: string]: string },
-    body: object
-  ) {
+  async requestPost(request: APIRequestContext, endpoint: string, header: { [key: string]: string }, body: object) {
     return await request.post(`${this.url}${endpoint}`, {
       data: body,
       headers: header,
     });
   }
 
-  async checkIfTokenIsActive(
-    page: Page,
-    request: APIRequestContext,
-    config: Imap.Config
-  ) {
-    const checkToken = await request.get(
-      `${this.url}${this.endpoints.userMe}`,
-      { headers: this.loggedHeaders.authBearerToken }
-    );
+  async checkIfTokenIsActive(page: Page, request: APIRequestContext, config: Imap.Config) {
+    const checkToken = await request.get(`${this.url}${this.endpoints.userMe}`, { headers: this.loggedHeaders.authBearerToken });
 
     if (await checkToken.ok()) {
       true;
     } else {
-      console.log("Use logic for refresh token");
-      await LoginPage.authenticateToApp(
-        page,
-        this.userRole!,
-        this.path!,
-        config
-      );
+      console.log('Use logic for refresh token');
+      await LoginPage.authenticateToApp(page, this.userRole, this.path, config);
     }
     const result = await checkToken.json();
     return result;
@@ -94,7 +74,7 @@ export class Api {
       const token = data.origins.map((el) => el.localStorage);
 
       for (const item of token.flat()) {
-        if (item.name.includes("accessToken")) {
+        if (item.name.includes('accessToken')) {
           const accessToken = item.value;
           return accessToken;
         }
