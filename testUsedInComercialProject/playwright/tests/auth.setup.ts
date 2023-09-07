@@ -1,14 +1,24 @@
 import { test as setup } from '@playwright/test';
 import { imapConfigAdmin, imapConfigUser } from 'mailBox';
-import { LoginPage } from 'playwright/pages/login.pages';
 import { Users } from 'playwright/fixtures/users.fixtures';
+import { LoginPage } from 'playwright/pages/login.pages';
 
 setup('authenticate as admin', async ({ page }) => {
-  await LoginPage.authenticateToApp(page, Users.userAdmin, Users.authFileAdmin, imapConfigAdmin);
+  await LoginPage.authenticateToApp(
+    page,
+    Users.userAdmin,
+    Users.authFileAdmin,
+    imapConfigAdmin,
+  );
 });
 
 setup('authenticate as user', async ({ page }) => {
-  await LoginPage.authenticateToApp(page, Users.user, Users.authFileUser, imapConfigUser);
+  await LoginPage.authenticateToApp(
+    page,
+    Users.user,
+    Users.authFileUser,
+    imapConfigUser,
+  );
 });
 
 setup('authenticate as unlogged user', async ({ page }) => {

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Page } from '@playwright/test';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import Imap from 'imap';
@@ -11,7 +12,12 @@ export class LoginPage {
   userProfileIcon = this.page.getByTestId('login-status-link');
   userProfileLogout = this.page.getByTestId('logout');
 
-  static async authenticateToApp(page: Page, userRole: string, path: string, config: Imap.Config) {
+  static async authenticateToApp(
+    page: Page,
+    userRole: string,
+    path: string,
+    config: Imap.Config,
+  ) {
     const loginPage = new LoginPage(page);
     await loginPage.generateMagicLink(userRole);
     const magicLink = await listenForNewMessages(config);
@@ -20,7 +26,9 @@ export class LoginPage {
   }
 
   async generateMagicLink(emailId: string) {
-    await this.page.goto('/auth/magic-link-login', { waitUntil: 'networkidle' });
+    await this.page.goto('/auth/magic-link-login', {
+      waitUntil: 'networkidle',
+    });
     await this.page.getByRole('button', { name: 'Accept' }).click();
     await this.magicLinkInput.fill(emailId);
     await this.button.first().click();

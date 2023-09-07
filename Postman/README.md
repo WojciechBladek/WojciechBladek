@@ -2,25 +2,27 @@
 
 ## To use the tests, I recommend exporting and then importing the tests into postman and running them on the native postman runner
 
-### HOW TO IMPORT TESTS: 
+### HOW TO IMPORT TESTS:
 
 Go to the postman
 <br/>
 
-- Import collection 
-    1. Click Import
-    2. Attach file test1.postman.json
-    
+- Import collection
+  1. Click Import
+  2. Attach file test1.postman.json
+
 <br/>
 
 - Import environment variables
-    1. Click Import
-    2. Attach file DEV.postman_environment.json
+  1. Click Import
+  2. Attach file DEV.postman_environment.json
 
 **Not all scripts will work properly, if you do not run them in the test runner, for example, the script for iterating through pages only works in the test runner should be remembered, it is executed there automatically.**
 
 # U can run collection by using NEWMAN
+
 Use script bellow in terminal(IDE)
+
 ```javascript
 newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var
 

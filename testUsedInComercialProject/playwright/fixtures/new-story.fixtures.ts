@@ -1,9 +1,12 @@
+/* eslint-disable */
 import { faker } from '@faker-js/faker';
+
 const conditions = ['yes', 'no'];
 const typeOfFeedback = ['Thanks', 'Question', 'Opinion', 'Request', 'Concern'];
 const isSensitive = ['yes', 'no'];
 
-const getRandomNumber = (myMin, myMax) => Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+const getRandomNumber = (myMin, myMax) =>
+  Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
 
 export interface User {
   readonly firstName: string;
@@ -33,7 +36,9 @@ export const createUser = (user?: Partial<User>): User => ({
   conditions: conditions[getRandomNumber(0, 1)],
 });
 
-export const createNewStoryContent = (story?: Partial<NewStoryContent>): NewStoryContent => ({
+export const createNewStoryContent = (
+  story?: Partial<NewStoryContent>,
+): NewStoryContent => ({
   content: faker.word.words(),
   isSensitive: 'no',
   typeOfFeedback: typeOfFeedback[getRandomNumber(0, 4)],

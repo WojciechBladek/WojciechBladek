@@ -1,5 +1,5 @@
-import { Page } from '@playwright/test';
 import { LoginPage } from './login.pages';
+import { Page } from '@playwright/test';
 
 export class CsvPage {
   constructor(private page: Page) {}

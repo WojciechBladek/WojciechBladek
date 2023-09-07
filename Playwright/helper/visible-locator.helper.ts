@@ -1,12 +1,13 @@
+/* eslint-disable */
 import {
-  KeyValueObject,
   ArrayOfKeyValueObject,
-} from "../model/interface.model";
-import { expect, Page, Locator } from "@playwright/test";
+  KeyValueObject,
+} from '../model/interface.model';
+import { Locator, Page, expect } from '@playwright/test';
 
 const checkIfMultipleElementAreVisible = async (
   page: Page,
-  obj: KeyValueObject | ArrayOfKeyValueObject
+  obj: KeyValueObject | ArrayOfKeyValueObject,
 ) => {
   for (const prop in obj) {
     await page
@@ -22,7 +23,7 @@ const checkIfMultipleElementAreVisible = async (
 
 const checkIfLocatorsAreVisible = async (
   page: Page,
-  obj: { [x: string]: string | RegExp }
+  obj: { [x: string]: string | RegExp },
 ) => {
   for (const locator in obj) {
     const dataID = page.getByTestId(obj[locator]);

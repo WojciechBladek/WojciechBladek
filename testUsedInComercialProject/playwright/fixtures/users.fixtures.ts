@@ -1,4 +1,5 @@
-import { test as base, type Page, type Locator } from '@playwright/test';
+/* eslint-disable */
+import { type Locator, type Page, test as base } from '@playwright/test';
 import { envData } from 'mailBox';
 
 class AdminPage {
@@ -34,21 +35,27 @@ type MyFixtures = {
 export * from '@playwright/test';
 export const test = base.extend<MyFixtures>({
   adminPage: async ({ browser }, use) => {
-    const context = await browser.newContext({ storageState: Users.authFileAdmin });
+    const context = await browser.newContext({
+      storageState: Users.authFileAdmin,
+    });
     const adminPage = new AdminPage(await context.newPage());
     await use(adminPage);
     await context.close();
   },
 
   userPage: async ({ browser }, use) => {
-    const context = await browser.newContext({ storageState: Users.authFileUser });
+    const context = await browser.newContext({
+      storageState: Users.authFileUser,
+    });
     const userPage = new UserPage(await context.newPage());
     await use(userPage);
     await context.close();
   },
 
   unloggedUserPage: async ({ browser }, use) => {
-    const context = await browser.newContext({ storageState: Users.authFileUnlogged });
+    const context = await browser.newContext({
+      storageState: Users.authFileUnlogged,
+    });
     const unloggedUserPage = new UnloggedUserPage(await context.newPage());
     await use(unloggedUserPage);
     await context.close();

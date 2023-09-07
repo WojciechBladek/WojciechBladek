@@ -6,20 +6,36 @@
   "scripts": {
     "PT1": "newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var",
     "TLogin": "npx playwright test Playwright/tests/login.spec.ts",
-    "TLoginDebug": "npx playwright test Playwright/tests/login.spec.ts --debug"
+    "TLoginDebug": "npx playwright test Playwright/tests/login.spec.ts --debug",
+    "format": "npx prettier --write .",
+    "format:check": "npx prettier . --check \"!**.ts\"",
+    "lint": "npx eslint . --ext .ts --max-warnings=0",
+    "test": "npx playwright test",
+    "test:headed": "npm run test -- --headed",
+    "test:ui": "npm run test -- --ui",
+    "show-report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.35.1",
-    "prettier": "2.8.8"
-  },
-  "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "@typescript-eslint/parser": "^6.6.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-playwright": "^0.16.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
     "@faker-js/faker": "^8.0.2",
     "chai": "^4.3.7",
     "imap": "^0.8.17",
     "mailparser": "^3.6.5",
     "newman": "^5.1.2"
+  },
+  "dependencies": {
+    "playwright": "^1.37.1",
+    "prettier": "3.0.3"
   }
 }

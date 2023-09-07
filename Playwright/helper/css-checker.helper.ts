@@ -1,18 +1,19 @@
-import { KeyValueObject, BoundingBox } from "../model/interface.model";
-import { expect, Page, Locator } from "@playwright/test";
+/* eslint-disable */
+import { BoundingBox, KeyValueObject } from '../model/interface.model';
+import { Locator, Page, expect } from '@playwright/test';
 
 const css = async (
   page: Page,
   locator: string | Locator,
-  obj: KeyValueObject
+  obj: KeyValueObject,
 ) => {
   const locatorID =
-    typeof locator === "string" ? page.getByTestId(locator) : locator;
+    typeof locator === 'string' ? page.getByTestId(locator) : locator;
   for (const prop in obj) {
     await expect
       .soft(
         locatorID,
-        `'${prop}' should be '${obj[prop]}' it occurs for '${locator}' locator`
+        `'${prop}' should be '${obj[prop]}' it occurs for '${locator}' locator`,
       )
       .toHaveCSS(prop, obj[prop]);
   }
@@ -21,10 +22,10 @@ const css = async (
 const cssSomeLocators = async (
   page: Page,
   locator: string | Locator,
-  typography: KeyValueObject
+  typography: KeyValueObject,
 ) => {
   const locatorID =
-    typeof locator === "string" ? page.getByTestId(locator) : locator;
+    typeof locator === 'string' ? page.getByTestId(locator) : locator;
   const count = await locatorID.count();
   for (let i = 0; i < count; i++) {
     await css(page, locatorID.nth(i), typography);
@@ -35,10 +36,10 @@ const cssSomeLocatorsWithAtribute = async (
   page: Page,
   locator: string | Locator,
   atr: string,
-  typography: KeyValueObject
+  typography: KeyValueObject,
 ) => {
   const locatorID =
-    typeof locator === "string"
+    typeof locator === 'string'
       ? page.getByTestId(locator).locator(`> ${atr}`)
       : locator;
   const count = await locatorID.count();
@@ -49,13 +50,13 @@ const cssSomeLocatorsWithAtribute = async (
 
 const property = async (
   locator: BoundingBox | null,
-  obj: KeyValueObject | any
+  obj: KeyValueObject | any,
 ) => {
   for (const prop in obj) {
     expect
       .soft(
         locator,
-        `'${prop}' should eql '${obj[prop]}' for locator '${locator}'`
+        `'${prop}' should eql '${obj[prop]}' for locator '${locator}'`,
       )
       .toHaveProperty(prop, obj[prop]);
   }
@@ -64,7 +65,7 @@ const property = async (
 const propertyTolerance = async (
   actual: object | Array<number>,
   expected: Record<string, number>,
-  tolerance: number
+  tolerance: number,
 ) => {
   return Object.entries(expected).every(([, expectedValue], i) => {
     return (

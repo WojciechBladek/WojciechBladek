@@ -1,8 +1,10 @@
+/* eslint-disable */
 import { Page } from '@playwright/test';
 import Imap from 'imap';
 import { envData } from 'mailBox';
 import { APIRequestContext } from 'playwright-core';
 import { LoginPage } from 'playwright/pages/login.pages';
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
 
@@ -42,21 +44,39 @@ export class Api {
     return page.waitForRequest(`${this.url}${endpoint}`);
   }
 
-  async requestGet(request: APIRequestContext, endpoint: string, header?: { [key: string]: string }) {
-    const sendRequest = await request.get(`${this.url}${endpoint}`, { headers: header });
+  async requestGet(
+    request: APIRequestContext,
+    endpoint: string,
+    header?: { [key: string]: string },
+  ) {
+    const sendRequest = await request.get(`${this.url}${endpoint}`, {
+      headers: header,
+    });
     const response = await sendRequest.json();
     return response;
   }
 
-  async requestPost(request: APIRequestContext, endpoint: string, header: { [key: string]: string }, body: object) {
+  async requestPost(
+    request: APIRequestContext,
+    endpoint: string,
+    header: { [key: string]: string },
+    body: object,
+  ) {
     return await request.post(`${this.url}${endpoint}`, {
       data: body,
       headers: header,
     });
   }
 
-  async checkIfTokenIsActive(page: Page, request: APIRequestContext, config: Imap.Config) {
-    const checkToken = await request.get(`${this.url}${this.endpoints.userMe}`, { headers: this.loggedHeaders.authBearerToken });
+  async checkIfTokenIsActive(
+    page: Page,
+    request: APIRequestContext,
+    config: Imap.Config,
+  ) {
+    const checkToken = await request.get(
+      `${this.url}${this.endpoints.userMe}`,
+      { headers: this.loggedHeaders.authBearerToken },
+    );
 
     if (await checkToken.ok()) {
       true;

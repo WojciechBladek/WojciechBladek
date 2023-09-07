@@ -1,12 +1,13 @@
-import { expect, Page, Locator } from "@playwright/test";
+/* eslint-disable */
+import { Locator, Page, expect } from '@playwright/test';
 
 const getVerticalDistance = async (
   page: Page,
   el1: string | Locator,
-  el2: string | Locator
+  el2: string | Locator,
 ) => {
-  const element1 = typeof el1 === "string" ? page.getByTestId(el1) : el1;
-  const element2 = typeof el2 === "string" ? page.getByTestId(el2) : el2;
+  const element1 = typeof el1 === 'string' ? page.getByTestId(el1) : el1;
+  const element2 = typeof el2 === 'string' ? page.getByTestId(el2) : el2;
 
   const box1 = await element1?.boundingBox();
   const box2 = await element2?.boundingBox();
@@ -18,10 +19,10 @@ const getVerticalDistance = async (
 const getHorizontalDistance = async (
   page: Page,
   el1: string | Locator,
-  el2: string | Locator
+  el2: string | Locator,
 ) => {
-  const element1 = typeof el1 === "string" ? page.getByTestId(el1) : el1;
-  const element2 = typeof el2 === "string" ? page.getByTestId(el2) : el2;
+  const element1 = typeof el1 === 'string' ? page.getByTestId(el1) : el1;
+  const element2 = typeof el2 === 'string' ? page.getByTestId(el2) : el2;
 
   const box1 = await element1?.boundingBox();
   const box2 = await element2?.boundingBox();
@@ -34,14 +35,14 @@ const checkdistanceIfPaddingOrMargin = async (
   distanceValue: number,
   paddingLocator: string | Locator,
   paddingCategory: string,
-  paddingValue: string
+  paddingValue: string,
 ) => {
   const locator1 =
-    typeof distanceLocator === "string"
+    typeof distanceLocator === 'string'
       ? page.getByTestId(distanceLocator)
       : distanceLocator;
   const locator2 =
-    typeof paddingLocator === "string"
+    typeof paddingLocator === 'string'
       ? page.getByTestId(paddingLocator)
       : paddingLocator;
   locator1
@@ -51,7 +52,7 @@ const checkdistanceIfPaddingOrMargin = async (
     : await expect
         .soft(
           locator2,
-          `'${locator2}' should have '${paddingCategory}' = '${paddingValue}'`
+          `'${locator2}' should have '${paddingCategory}' = '${paddingValue}'`,
         )
         .toHaveCSS(paddingCategory, paddingValue);
 };
@@ -60,15 +61,15 @@ const getVerticalDistanceForMultipleItems = async (
   page: Page,
   count: number,
   locator1: string | Locator,
-  locator2: string | Locator
+  locator2: string | Locator,
 ) => {
   for (let i = 0; i < count; i++) {
     const element1 =
-      typeof locator1 === "string"
+      typeof locator1 === 'string'
         ? page.getByTestId(locator1).nth(i)
         : locator1;
     const element2 =
-      typeof locator2 === "string"
+      typeof locator2 === 'string'
         ? page.getByTestId(locator2).nth(i)
         : locator2;
     const result = await getVerticalDistance(page, element1, element2);
@@ -78,7 +79,7 @@ const getVerticalDistanceForMultipleItems = async (
 const ifTextIsLastOrImgIsLatCheckDistance = async (
   el1: number | null,
   el2: number | null,
-  exceptedDistance: number
+  exceptedDistance: number,
 ) => {
   const locator1 = el1;
   const locator2 = el2;
@@ -90,7 +91,7 @@ const ifTextIsLastOrImgIsLatCheckDistance = async (
 const checkIsWithinTolerance = async (
   actual: number | null,
   expected: number,
-  tolerance: number
+  tolerance: number,
 ) => {
   if (!expected) {
     return null;
@@ -104,21 +105,21 @@ const checkVerticalDistanceBetweenLocators = async (
   page: Page,
   locator1: Locator | string,
   locator2: Locator | string,
-  exceptedDistanceValue: number
+  exceptedDistanceValue: number,
 ) => {
   const locatorID1 =
-    typeof locator1 === "string" ? page.getByTestId(locator1) : locator1;
+    typeof locator1 === 'string' ? page.getByTestId(locator1) : locator1;
   const locatorID2 =
-    typeof locator2 === "string" ? page.getByTestId(locator2) : locator2;
+    typeof locator2 === 'string' ? page.getByTestId(locator2) : locator2;
   const currentDistanceValue = await getVerticalDistance(
     page,
     locatorID1,
-    locatorID2
+    locatorID2,
   );
   expect
     .soft(
       currentDistanceValue,
-      `'${locator1}' distance between '${locator2}' should eq '${exceptedDistanceValue}px' `
+      `'${locator1}' distance between '${locator2}' should eq '${exceptedDistanceValue}px' `,
     )
     .toEqual(exceptedDistanceValue);
 };
@@ -126,21 +127,21 @@ const checkHorizontalDistanceBetweenLocators = async (
   page: Page,
   locator1: Locator | string,
   locator2: Locator | string,
-  exceptedDistanceValue: number
+  exceptedDistanceValue: number,
 ) => {
   const locatorID1 =
-    typeof locator1 === "string" ? page.getByTestId(locator1) : locator1;
+    typeof locator1 === 'string' ? page.getByTestId(locator1) : locator1;
   const locatorID2 =
-    typeof locator2 === "string" ? page.getByTestId(locator2) : locator2;
+    typeof locator2 === 'string' ? page.getByTestId(locator2) : locator2;
   const currentDistanceValue = await getHorizontalDistance(
     page,
     locatorID1,
-    locatorID2
+    locatorID2,
   );
   expect
     .soft(
       currentDistanceValue,
-      `'${locator1}' distance between '${locator2}' should eq '${exceptedDistanceValue}px' `
+      `'${locator1}' distance between '${locator2}' should eq '${exceptedDistanceValue}px' `,
     )
     .toEqual(exceptedDistanceValue);
 };

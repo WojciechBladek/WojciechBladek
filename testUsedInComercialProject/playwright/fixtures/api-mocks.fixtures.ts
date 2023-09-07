@@ -1,6 +1,11 @@
+/* eslint-disable */
 import { Page } from '@playwright/test';
 
-const mockApiResponseUserMe = async (page: Page, endpoint: string, objectJson: object) => {
+const mockApiResponseUserMe = async (
+  page: Page,
+  endpoint: string,
+  objectJson: object,
+) => {
   await page.route(`*/**/${endpoint}`, async (route) => {
     const json = objectJson;
     await route.fulfill({ json });

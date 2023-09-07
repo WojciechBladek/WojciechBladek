@@ -1,3 +1,4 @@
+/* eslint-disable */
 import fs from 'fs';
 import Imap from 'imap';
 import { simpleParser } from 'mailparser';
@@ -80,7 +81,10 @@ export function listenForNewMessages(config: Imap.Config): Promise<string> {
         imap.on('mail', (numNewMsgs) => {
           console.log(`New messages: ${numNewMsgs}`);
 
-          const fetch = imap.seq.fetch(`${box.messages.total - numNewMsgs + 1}:${box.messages.total}`, { bodies: '' });
+          const fetch = imap.seq.fetch(
+            `${box.messages.total - numNewMsgs + 1}:${box.messages.total}`,
+            { bodies: '' },
+          );
 
           fetch.on('message', (msg, seqno) => {
             msg.on('body', (stream) => {
