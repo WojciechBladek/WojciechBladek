@@ -21,7 +21,7 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Print name
-        run: echo "Hello $BASE_URL"
+        run: echo "Hello ${{ env.BASE_URL }}"
       - name: Create .env
         run: |
           echo 
