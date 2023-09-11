@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+require('dotenv').config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -15,7 +17,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'https://skleptest.pl/',
+    baseURL: process.env.BASE_URL,
     trace: 'retain-on-failure',
   },
 
