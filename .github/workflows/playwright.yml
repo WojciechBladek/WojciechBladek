@@ -9,8 +9,6 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
-      Greeting: Hello
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -21,8 +19,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Print name
-        run: echo "Hello ${{ env.BASE_URL }}"
+        env:
+          BASE_URL: $BASE_URL
+        run: echo "Hello $BASE_URL"
       - name: Create .env
+        env:
+          BASE_URL: $BASE_URL
+          USER_EMAIL : $USER_EMAIL
+          USER_PASSWORD : $USER_PASSWORD
+          USER_NAME : $USER_NAME
         run: |
           echo 
                 "BASE_URL" : $BASE_URL
