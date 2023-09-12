@@ -6,12 +6,11 @@ test.describe('Login to the application', () => {
   let loginPage: LoginPage;
 
   test.beforeEach(async ({ page }) => {
+    // Arrange
     loginPage = new LoginPage(page);
   });
 
   test('Login with correct credentials @GEN_S1_01', async ({}) => {
-    // Arrange
-
     // Act
     await loginPage.goto();
     await loginPage.login(UserLoginData);
