@@ -6,3 +6,8 @@ export interface UserLogin {
 export interface UserName {
   userName: string;
 }
+
+export interface RegisterUser {
+  userEmail: string;
+  userPassword: string;
+}
