@@ -8,7 +8,6 @@ export class RegisterPage extends BasePage {
   userEmailInput = this.page.getByLabel('Email address *', { exact: true });
   userPasswordInput = this.page.locator('#reg_password');
   registerButton = this.page.getByRole('button', { name: 'Register' });
-  passwordLevelPopup = this.page.getByText('Strong');
 
   welcomeText = this.page
     .locator('#post-8 > div.woocommerce > div > p')

@@ -1,5 +1,52 @@
-## Work in progress
+# Tests for skleptest.pl application
 
-### For the moment, you'll find the helpers I created for myself for the project here
+## GAD Application
 
-### In the near future the first tests will appear, for these moments the preparation of the environment is in progress :)
+Repository: https://github.com/WojciechBladek/WojciechBladek/tree/main/Playwright
+
+Follow instructions in app README
+
+## Prepare
+
+### Local recommended tools:
+
+- VS Code
+- Git
+- Node.js (version >16)
+
+### Installation and setup
+
+- (optional) install VSC recommended plugins
+- install dependencies: `npm install`
+- setup Playwright with: `npx playwright install --with-deps chromium`
+- setup husky with: `npx husky install`
+- prepare local env file: `cp .env-template .env`
+- copy application main URL as value of `BASE_URL` variable in `.env` file
+
+## Use
+
+Run all tests:
+
+```
+npx playwright test
+```
+
+Run all tests with tags:
+
+```
+npx playwright test --grep "@GEN_S1_01"
+```
+
+Run all tests without tags:
+
+```
+npx playwright test --grep-invert "@GEN_S1_01"
+```
+
+Repeat tests with value:
+
+```
+npx playwright test --grep "@@GEN_S2_01" --repeat-each=5
+```
+
+For more usage cases look in `package.json` scripts section.
