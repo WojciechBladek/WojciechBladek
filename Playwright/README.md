@@ -1,6 +1,6 @@
 # Tests for skleptest.pl application
 
-## GAD Application
+## GEN Shop Application
 
 Repository: https://github.com/WojciechBladek/WojciechBladek/tree/main/Playwright
 
