@@ -5,3 +5,4 @@ node_modules/
 playwright.env.json
 testUsedInComercialProject/playwright/.auth
 .env
+playwright/.auth
