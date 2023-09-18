@@ -54,6 +54,11 @@ test.describe('Verify register', () => {
     });
 
     // Assert
+    await expect(registerPage.userEmailInput).toHaveAttribute('type', 'email');
+    await expect(registerPage.userPasswordInput).toHaveAttribute(
+      'type',
+      'password',
+    );
     await expect(
       registerPage.emailErrorText,
       'Should be displayed invalid email text error',

@@ -32,6 +32,12 @@ test.describe('Verify login', () => {
     });
 
     // Assert
+    await expect(loginPage.userEmailInput).toHaveAttribute('type', 'text');
+    await expect(loginPage.userPasswordInput).toHaveAttribute(
+      'type',
+      'password',
+    );
+
     await expect(
       loginPage.loginError,
       'User not invalid credentials error text is displayed',

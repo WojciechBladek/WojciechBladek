@@ -123,4 +123,3 @@ export function listenForNewMessages(config: Imap.Config): Promise<string> {
     imap.connect();
   });
 }
-

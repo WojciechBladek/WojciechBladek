@@ -22,8 +22,10 @@ export class RegisterPage extends BasePage {
 
   async registerNewUser(registerUserData: RegisterUser): Promise<void> {
     await this.userEmailInput.fill(registerUserData.userEmail);
-    await this.userPasswordInput.fill(registerUserData.userPassword);
-    await this.registerButton.dispatchEvent('click');
+    await this.userPasswordInput.type(registerUserData.userPassword, {
+      delay: 50,
+    });
+    await this.registerButton.click();
   }
 
   expectedWelcomeText(userName: string): string {
