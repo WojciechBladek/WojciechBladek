@@ -15,7 +15,10 @@ test.describe('Verify login', () => {
     await loginPage.login(UserLoginData);
 
     // Assert
-    await expect(loginPage.welcomeText).toContainText(UserData.userName);
+    await expect(
+      loginPage.welcomeText,
+      'User is logged and is on my acc page',
+    ).toContainText(UserData.userName);
   });
   test('Reject login with incorrect password @GEN-S1-01', async ({}) => {
     // Arrange
@@ -29,6 +32,9 @@ test.describe('Verify login', () => {
     });
 
     // Assert
-    await expect(loginPage.loginError).toHaveText(errorMessage);
+    await expect(
+      loginPage.loginError,
+      'User not invalid credentials error text is displayed',
+    ).toHaveText(errorMessage);
   });
 });

@@ -24,9 +24,10 @@ test.describe('Verify register', () => {
     await registerPage.registerNewUser(registerUserData);
 
     // Assert
-    await expect(registerPage.welcomeText).toHaveText(
-      registerPage.expectedWelcomeText(userName),
-    );
+    await expect(
+      registerPage.welcomeText,
+      'Should be visible welcome text with userName',
+    ).toHaveText(registerPage.expectedWelcomeText(userName));
   });
 
   test('login with new account @GEN-S2-01', async ({ page }) => {
@@ -37,9 +38,10 @@ test.describe('Verify register', () => {
     await loginPage.login(registerUserData);
 
     // Assert
-    await expect(registerPage.welcomeText).toHaveText(
-      registerPage.expectedWelcomeText(userName),
-    );
+    await expect(
+      registerPage.welcomeText,
+      'Should be visible welcome text with userName',
+    ).toHaveText(registerPage.expectedWelcomeText(userName));
   });
 
   test('not register with incorrect data - email not provided @GEN-S2-02', async ({}) => {
@@ -52,6 +54,9 @@ test.describe('Verify register', () => {
     });
 
     // Assert
-    await expect(registerPage.emailErrorText).toBeVisible();
+    await expect(
+      registerPage.emailErrorText,
+      'Should be displayed invalid email text error',
+    ).toBeVisible();
   });
 });

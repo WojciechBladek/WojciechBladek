@@ -22,6 +22,9 @@ test.describe('Verify shop', () => {
     await cartPage.waitForPageToLoadUrl();
 
     // Assert
-    await expect(await shopPage.productNameLocator(productName)).toBeVisible();
+    await expect(
+      await shopPage.productNameLocator(productName),
+      'Product should be visible in cart',
+    ).toBeVisible();
   });
 });
