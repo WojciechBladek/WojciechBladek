@@ -124,13 +124,3 @@ export function listenForNewMessages(config: Imap.Config): Promise<string> {
   });
 }
 
-// Start listening for new messages
-
-// listenForNewMessages(config)
-//   .then((result) => {
-//     result;
-//     // Here you can use the 'result' value for further work
-//   })
-//   .catch((err) => {
-//     console.error('An error occurred:', err);
-//   });
