@@ -34,19 +34,19 @@ npx playwright test
 Run all tests with tags:
 
 ```
-npx playwright test --grep "@GEN_S1_01"
+npx playwright test --grep "@GEN-S1-01"
 ```
 
 Run all tests without tags:
 
 ```
-npx playwright test --grep-invert "@GEN_S1_01"
+npx playwright test --grep-invert "@GEN-S1-01"
 ```
 
 Repeat tests with value:
 
 ```
-npx playwright test --grep "@@GEN_S2_01" --repeat-each=5
+npx playwright test --grep "@@GEN-S2-01" --repeat-each=5
 ```
 
 For more usage cases look in `package.json` scripts section.

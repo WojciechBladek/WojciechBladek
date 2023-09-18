@@ -9,7 +9,7 @@ test.describe('Verify login', () => {
     loginPage = new LoginPage(page);
   });
 
-  test('Login with correct credentials @GEN_S1_01', async ({}) => {
+  test('Login with correct credentials @GEN-S1-01', async ({}) => {
     // Act
     await loginPage.goto();
     await loginPage.login(UserLoginData);
@@ -17,7 +17,7 @@ test.describe('Verify login', () => {
     // Assert
     await expect(loginPage.welcomeText).toContainText(UserData.userName);
   });
-  test('Reject login with incorrect password @GEN_S1_01', async ({}) => {
+  test('Reject login with incorrect password @GEN-S1-01', async ({}) => {
     // Arrange
     const errorMessage = `Error: The password you entered for the username ${UserLoginData.userEmail} is incorrect. Lost your password?`;
 

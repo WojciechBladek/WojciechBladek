@@ -15,7 +15,7 @@ test.describe('Verify register', () => {
     await registerPage.goto();
   });
 
-  test('register with correct data and login @GEN_S2_01', async ({}) => {
+  test('register with correct data and login @GEN-S2-01', async ({}) => {
     // Arrange
     registerUserData = randomUserData();
     userName = registerUserData.userEmail.replace('@example.test', '');
@@ -29,7 +29,7 @@ test.describe('Verify register', () => {
     );
   });
 
-  test('login with new account @GEN_S2_01', async ({ page }) => {
+  test('login with new account @GEN-S2-01', async ({ page }) => {
     // Arrange
     const loginPage = new LoginPage(page);
 
@@ -42,7 +42,7 @@ test.describe('Verify register', () => {
     );
   });
 
-  test('not register with incorrect data - email not provided @GEN_S2_02', async ({}) => {
+  test('not register with incorrect data - email not provided @GEN-S2-02', async ({}) => {
     // Act
     const registerUserData = randomUserData();
 
