@@ -1,10 +1,9 @@
-/* eslint-disable */
 import { getRandomValue } from '../helpers/randomValue.helper';
 import { BasePage } from './base.page';
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class ShopPage extends BasePage {
-  url = '/shop';
+  url = '/shop/';
 
   myCartButton = this.page.getByRole('listitem').filter({ hasText: 'My Cart' });
   productsList = this.page
@@ -24,10 +23,8 @@ export class ShopPage extends BasePage {
       .click();
   }
 
-  async productName(productName: string): Promise<string | null> {
-    return await this.page
-      .getByRole('link', { name: `${productName}` })
-      .textContent();
+  async productNameLocator(productName: string): Promise<Locator> {
+    return this.page.getByRole('link', { name: `${productName}` });
   }
 
   async getRandomProductName(): Promise<string> {
