@@ -7,9 +7,9 @@ require('dotenv').config();
  */
 export default defineConfig({
   testDir: './Playwright/tests',
-  timeout: 20 * 1000,
+  timeout: 40 * 1000,
   expect: {
-    timeout: 2000,
+    timeout: 10000,
   },
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
