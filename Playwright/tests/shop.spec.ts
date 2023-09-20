@@ -57,6 +57,7 @@ test.describe('Verify shop', () => {
     // Act
     await cartPage.goto();
     await cartPage.proceedToCheckoutButton.click({ delay: 200 });
+    await checkoutPage.waitForPageToLoadUrl();
     await checkoutPage.fillOutTheForm(randomUserFormData);
     await checkoutPage.placeOrderButton.click({ delay: 200 });
 
