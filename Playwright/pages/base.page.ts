@@ -5,7 +5,8 @@ export class BasePage {
   constructor(protected page: Page) {}
 
   async goto(): Promise<void> {
-    await this.page.goto(this.url);
+    // eslint-disable-next-line playwright/no-networkidle
+    await this.page.goto(this.url, { waitUntil: 'networkidle' });
   }
 
   async title(): Promise<string> {
