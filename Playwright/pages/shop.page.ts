@@ -1,12 +1,15 @@
 import { getRandomValue } from '../helpers/randomValue.helper';
 import { BasePage } from './base.page';
 import { CartPage } from './cart.page';
-import { Locator, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class ShopPage extends BasePage {
   url = '/shop/';
   cartPage = new CartPage(this.page);
 
+  productName = this.page.locator(
+    '#post-6 > div.woocommerce > form > table > tbody > tr.woocommerce-cart-form__cart-item.cart_item > td.product-name',
+  );
   myCartButton = this.page.locator(
     '#page > header.top-header-bar-container > div > div > div > ul > li.top-cart',
   );
@@ -25,10 +28,6 @@ export class ShopPage extends BasePage {
       .filter({ hasText: `${productName}` })
       .getByRole('link', { name: ' Add to cart' })
       .click();
-  }
-
-  async productNameLocator(productName: string): Promise<Locator> {
-    return this.page.getByRole('link', { name: `${productName}` });
   }
 
   async getRandomProductName(): Promise<string> {

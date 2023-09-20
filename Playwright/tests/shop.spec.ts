@@ -28,10 +28,7 @@ test.describe('Verify shop', () => {
     await cartPage.waitForPageToLoadUrl();
 
     // Assert
-    await expect(
-      await shopPage.productNameLocator(productName),
-      'Product should be visible in cart',
-    ).toBeVisible();
+    expect(await shopPage.productName.textContent()).toContain(productName);
   });
   test('Update product value @GEN-S3-02', async ({}) => {
     // Arrange
