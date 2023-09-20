@@ -28,8 +28,13 @@ test.describe('Verify shop', () => {
     await cartPage.waitForPageToLoadUrl();
 
     // Assert
-    await expect(shopPage.productName).toBeVisible();
+    const exceptedProductName = await shopPage.productName.textContent();
+
+    expect(exceptedProductName?.replace(/[^A-Za-z]/g, '')).toContain(
+      productName?.replace(/[^A-Za-z]/g, ''),
+    );
   });
+
   test('Update product value @GEN-S3-02', async ({}) => {
     // Arrange
     const exceptedProductValue = '2';
@@ -45,6 +50,7 @@ test.describe('Verify shop', () => {
     );
     await expect(cartPage.cartUpdatedText).toHaveText(exceptedCartUpdatedText);
   });
+
   test('Make an order @GEN-S3-03', async ({ page }) => {
     // Arrange
     const orderPage = new OrderReceivedPage(page);
