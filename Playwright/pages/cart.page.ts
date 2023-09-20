@@ -12,6 +12,7 @@ export class CartPage extends BasePage {
   proceedToCheckoutButton = this.page.getByRole('link', {
     name: 'Proceed to checkout',
   });
+  cartIsEmpty = this.page.getByText('Your cart is currently empty.');
 
   constructor(page: Page) {
     super(page);

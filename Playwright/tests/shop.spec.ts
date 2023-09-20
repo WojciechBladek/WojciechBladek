@@ -24,7 +24,7 @@ test.describe('Verify shop', () => {
 
     // Act
     await shopPage.addItemToCart(productName);
-    await shopPage.myCartButton.click();
+    await shopPage.clickMyCartButton();
     await cartPage.waitForPageToLoadUrl();
 
     // Assert
