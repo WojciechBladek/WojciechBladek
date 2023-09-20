@@ -13,6 +13,9 @@ export class CheckoutPage extends BasePage {
   userPhone = this.page.locator('#billing_phone');
 
   placeOrderButton = this.page.locator('#place_order');
+  errorMessage = this.page.locator(
+    '#post-7 > div.woocommerce > form.checkout.woocommerce-checkout > div.woocommerce-NoticeGroup.woocommerce-NoticeGroup-checkout > div',
+  );
 
   constructor(page: Page) {
     super(page);
@@ -31,7 +34,7 @@ export class CheckoutPage extends BasePage {
 
   async clickPlaceOrderButton(): Promise<void> {
     await this.placeOrderButton.click();
-    if (this.page.url() === this.url) {
+    if (await this.errorMessage.isVisible()) {
       await this.placeOrderButton.click();
     }
   }
