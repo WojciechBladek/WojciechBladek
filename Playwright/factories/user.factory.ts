@@ -9,7 +9,7 @@ export function randomUserData(): RegisterUser {
     userEmail: faker.internet.email({
       firstName: firstName,
       lastName: lastName,
-      provider: 'example.test',
+      provider: 'example.tet',
     }),
     userPassword: faker.internet.password({ prefix: '@#$%^&*(!', length: 15 }),
   };

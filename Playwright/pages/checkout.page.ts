@@ -32,10 +32,4 @@ export class CheckoutPage extends BasePage {
     await this.userPhone.type(userFormData.userPhone, { delay: 10 });
   }
 
-  async clickPlaceOrderButton(): Promise<void> {
-    await this.placeOrderButton.click();
-    if (await this.errorMessage.isVisible()) {
-      await this.placeOrderButton.click();
-    }
-  }
 }

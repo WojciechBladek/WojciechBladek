@@ -18,7 +18,7 @@ test.describe('Verify register', () => {
   test('register with correct data and login @GEN-S2-01', async ({}) => {
     // Arrange
     registerUserData = randomUserData();
-    userName = registerUserData.userEmail.replace('@example.test', '');
+    userName = registerUserData.userEmail.replace('@example.tet', '');
 
     // Act
     await registerPage.registerNewUser(registerUserData);

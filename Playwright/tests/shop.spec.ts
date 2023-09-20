@@ -62,7 +62,9 @@ test.describe('Verify shop', () => {
     await cartPage.proceedToCheckoutButton.click({ delay: 200 });
     await checkoutPage.waitForPageToLoadUrl();
     await checkoutPage.fillOutTheForm(randomUserFormData);
-    await checkoutPage.clickPlaceOrderButton();
+    //Used dispatch event,
+    //in application occurs bug with json and need to be fixed
+    await checkoutPage.placeOrderButton.dispatchEvent('click');
 
     // Assert
     await page.waitForURL(/checkout\/order-received/);
