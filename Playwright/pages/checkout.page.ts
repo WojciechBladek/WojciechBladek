@@ -31,5 +31,4 @@ export class CheckoutPage extends BasePage {
     await this.userTownCity.type(userFormData.userTownCity, { delay: 10 });
     await this.userPhone.type(userFormData.userPhone, { delay: 10 });
   }
-
 }
