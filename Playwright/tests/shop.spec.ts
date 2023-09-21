@@ -66,7 +66,6 @@ test.describe('Verify shop', () => {
     await checkoutPage.placeOrderButton.click({ timeout: 5000 });
 
     // Assert
-
     await expect(orderPage.orderReceivedText).toBeVisible();
   });
 });

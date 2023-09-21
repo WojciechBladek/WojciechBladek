@@ -9,5 +9,4 @@ export class OrderReceivedPage extends BasePage {
   constructor(page: Page) {
     super(page);
   }
-
 }
