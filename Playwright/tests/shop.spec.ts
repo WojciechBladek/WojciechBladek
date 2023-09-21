@@ -62,15 +62,11 @@ test.describe('Verify shop', () => {
     await cartPage.proceedToCheckoutButton.click({ delay: 200 });
     await checkoutPage.waitForPageToLoadUrl();
     await checkoutPage.fillOutTheForm(randomUserFormData);
-    //Used conditionals in test because,
-    //in application occurs bug with json and need to be fixed
-    await checkoutPage.placeOrderButton.click();
+
+    await checkoutPage.placeOrderButton.click({ timeout: 5000 });
 
     // Assert
-    if (await orderPage.orderReceivedText.isVisible()) {
-      await expect(orderPage.orderReceivedText).toBeVisible();
-    } else {
-      await checkoutPage.placeOrderButton.dispatchEvent('click');
-    }
+
+    await expect(orderPage.orderReceivedText).toBeVisible();
   });
 });

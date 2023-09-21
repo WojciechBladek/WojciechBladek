@@ -22,13 +22,14 @@ export class CheckoutPage extends BasePage {
   }
 
   async fillOutTheForm(userFormData: UserCheckoutData): Promise<void> {
-    await this.userFirstName.type(userFormData.userFirstName, { delay: 10 });
-    await this.userLastName.type(userFormData.userLastName, { delay: 10 });
+    await this.userFirstName.type(userFormData.userFirstName, { delay: 50 });
+    await this.userLastName.type(userFormData.userLastName, { delay: 50 });
     await this.userStreetAddress.type(userFormData.userStreetAddress, {
-      delay: 10,
+      delay: 50,
     });
-    await this.userPostCode.type(userFormData.userPostCode, { delay: 10 });
-    await this.userTownCity.type(userFormData.userTownCity, { delay: 10 });
-    await this.userPhone.type(userFormData.userPhone, { delay: 10 });
+    await this.userPostCode.type(userFormData.userPostCode, { delay: 50 });
+    await this.userTownCity.type(userFormData.userTownCity, { delay: 50 });
+    await this.userPhone.type(userFormData.userPhone, { delay: 100 });
+    await this.userPhone.blur();
   }
 }
