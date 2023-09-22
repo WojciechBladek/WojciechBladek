@@ -11,6 +11,10 @@ export class CheckoutPage extends BasePage {
   userPostCode = this.page.locator('#billing_postcode');
   userTownCity = this.page.locator('#billing_city');
   userPhone = this.page.locator('#billing_phone');
+  userCountry = this.page.locator('#select2-billing_country-container');
+  userCountryState = this.page
+    .locator('#billing_state_field')
+    .getByRole('combobox');
 
   placeOrderButton = this.page.locator('#place_order');
   errorMessage = this.page.locator(
@@ -24,11 +28,17 @@ export class CheckoutPage extends BasePage {
   async fillOutTheForm(userFormData: UserCheckoutData): Promise<void> {
     await this.userFirstName.type(userFormData.userFirstName, { delay: 50 });
     await this.userLastName.type(userFormData.userLastName, { delay: 50 });
+    await this.userCountry.click();
+    await this.page
+      .getByRole('option', { name: 'United States (US)', exact: true })
+      .click();
+    await this.userPostCode.type(userFormData.userPostCode, { delay: 50 });
+    await this.userTownCity.type(userFormData.userTownCity, { delay: 50 });
+    await this.userCountryState.click();
+    await this.page.getByRole('option', { name: 'Washington' }).click();
     await this.userStreetAddress.type(userFormData.userStreetAddress, {
       delay: 50,
     });
-    await this.userPostCode.type(userFormData.userPostCode, { delay: 50 });
-    await this.userTownCity.type(userFormData.userTownCity, { delay: 50 });
     await this.userPhone.type(userFormData.userPhone, { delay: 100 });
     await this.userPhone.blur();
   }
