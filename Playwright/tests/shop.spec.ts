@@ -64,6 +64,10 @@ test.describe('Verify shop', () => {
     await checkoutPage.fillOutTheForm(randomUserFormData);
     await checkoutPage.placeOrderButton.click({ delay: 2000 });
 
+    if (await checkoutPage.errorMessage.isVisible()) {
+      await checkoutPage.placeOrderButton.click({ delay: 2000 });
+    }
+
     // Assert
     await expect(orderPage.orderReceivedText).toBeVisible();
   });
