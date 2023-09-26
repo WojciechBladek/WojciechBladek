@@ -13,7 +13,8 @@
     "test": "npx playwright test",
     "test:headed": "npm run test -- --headed",
     "test:ui": "npm run test -- --ui",
-    "show-report": "npx playwright show-report"
+    "show-report": "npx playwright show-report",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "chai": "^4.3.7",
+    "cypress": "^13.2.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
@@ -33,7 +35,8 @@
     "husky": "^8.0.3",
     "imap": "^0.8.17",
     "mailparser": "^3.6.5",
-    "newman": "^5.1.2"
+    "newman": "^5.1.2",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "playwright": "^1.37.1",
