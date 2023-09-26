@@ -1,8 +1,8 @@
 import { LoginPage } from '../pages/login.page';
 import { UserData, UserLoginData } from '../test-data/user.data';
 
-describe('template spec', () => {
-  it('passes', async () => {
+describe('Verify login', () => {
+  it('Login with correct user data', async () => {
     // Arrange
     const loginPage = new LoginPage();
 
