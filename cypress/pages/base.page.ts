@@ -2,7 +2,7 @@ export class BasePage {
   url = '';
   constructor() {}
 
-  async goto(): Promise<void> {
+  goto(): void {
     cy.visit(this.url);
   }
 }

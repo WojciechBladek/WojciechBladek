@@ -6,7 +6,7 @@ require('dotenv').config();
 export default defineConfig({
   e2e: {
     baseUrl: process.env.BASE_URL,
-    execTimeout: 30000,
+    execTimeout: 10000,
     pageLoadTimeout: 60000,
     screenshotOnRunFailure: true,
     screenshotsFolder: 'cypress/screenshots',

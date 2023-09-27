@@ -17,12 +17,15 @@ export class LoginPage extends BasePage {
   welcomeText(): Locator {
     return cy.get('#post-8 > div.woocommerce > div > p').first();
   }
+  loginError(): Locator {
+    return cy.get('#post-8 > div.woocommerce > ul > li');
+  }
 
   constructor() {
     super();
   }
 
-  async login(userLoginData: UserLogin): Promise<void> {
+  login(userLoginData: UserLogin): void {
     this.userNameInput().type(userLoginData.userEmail);
     this.userPasswordInput().type(userLoginData.userPassword);
     this.loginButton().click();
