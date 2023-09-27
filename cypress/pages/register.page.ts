@@ -17,6 +17,9 @@ export class RegisterPage extends BasePage {
   welcomeText(): Locator {
     return cy.get('#post-8 > div.woocommerce > div > p').first();
   }
+  emailErrorText(): Locator {
+    return cy.get('#post-8 > div.woocommerce > ul > li')
+  }
   constructor() {
     super();
   }

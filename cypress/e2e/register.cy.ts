@@ -34,4 +34,27 @@ describe('Verify register', () => {
       .welcomeText()
       .should('have.text', registerPage.expectedWelcomeText(userName));
   });
+
+  it('not register with incorrect data - email not provided', () => {
+    // Arrange
+    const registerUserData = randomUserData();
+    registerUserData.userEmail = ' ';
+    const errorMessage = 'Error: Please provide a valid email address.';
+
+    // Act
+    registerPage.registerNewUser(registerUserData);
+
+    // Assert
+    registerPage
+      .registerEmailInput()
+      .invoke('attr', 'type')
+      .should('eq', 'email');
+    registerPage
+      .registerPasswordInput()
+      .invoke('attr', 'type')
+      .should('eq', 'password');
+
+    registerPage.emailErrorText().should('be.visible');
+    registerPage.emailErrorText().should('have.text', errorMessage);
+  });
 });
