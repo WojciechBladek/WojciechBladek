@@ -1,7 +1,6 @@
+import { BASE_URL } from './global-setup';
 import { defineConfig, devices } from '@playwright/test';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require('dotenv').config();
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -17,20 +16,15 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: process.env.BASE_URL,
+    baseURL: BASE_URL,
     trace: 'retain-on-failure',
   },
 
   projects: [
     { name: 'setup', testMatch: /.*\.setup\.ts/ },
-    // {
-    //   name: 'chromium',
-    //   use: { ...devices['Desktop Chrome'] },
-    //   dependencies: ['setup'],
-    // },
     {
-      name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
       dependencies: ['setup'],
     },
   ],

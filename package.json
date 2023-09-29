@@ -38,7 +38,8 @@
     "imap": "^0.8.17",
     "mailparser": "^3.6.5",
     "newman": "^5.1.2",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "@types/node": "^20.7.1"
   },
   "dependencies": {
     "playwright": "^1.37.1",
