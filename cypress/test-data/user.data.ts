@@ -1,9 +1,14 @@
 import { UserLoginModel, UserNameModel } from '../models/user.model';
 
 export const UserLoginModelData: UserLoginModel = {
-  userEmail: Cypress.env('userEmail') ?? '[NOT SET]',
-  userPassword: Cypress.env('userPassword') ?? '[NOT SET]',
+  userEmail: envVariableCY('userEmail'),
+  userPassword: envVariableCY('userPassword'),
 };
 export const UserData: UserNameModel = {
-  userName: Cypress.env('userName') ?? '[NOT SET]',
+  userName: envVariableCY('userName'),
 };
+
+function envVariableCY(envVariable: string): string {
+  const envVariableValue = Cypress.env(envVariable);
+  return envVariableValue;
+}
