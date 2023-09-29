@@ -13,11 +13,8 @@ describe('Verify shop', () => {
     shopPage.clickMyCartButton();
 
     //Assert
-    cartPage.productName().then(($product) => {
-      const productName = $product.text();
-      cy.get('@exceptedName').then((exceptedName) => {
-        expect(exceptedName).to.contain(productName);
-      });
+    cy.get('@exceptedName').then((exceptedName) => {
+      cartPage.productName().should('have.text', exceptedName);
     });
   });
 });
