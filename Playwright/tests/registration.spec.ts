@@ -1,5 +1,5 @@
 import { randomUserData } from '../factories/user.factory';
-import { RegisterUser } from '../models/user.model';
+import { RegisterUserModel } from '../models/user.model';
 import { LoginPage } from '../pages/login.page';
 import { RegisterPage } from '../pages/register.page';
 import { expect, test } from '@playwright/test';
@@ -7,7 +7,7 @@ import { expect, test } from '@playwright/test';
 test.describe.configure({ mode: 'serial' });
 test.describe('Verify register', () => {
   let registerPage: RegisterPage;
-  let registerUserData: RegisterUser;
+  let registerUserData: RegisterUserModel;
   let userName: string;
 
   test.beforeEach(async ({ page }) => {

@@ -1,9 +1,9 @@
-import { UserLogin, UserName } from '../models/user.model';
+import { UserLoginModel, UserNameModel } from '../models/user.model';
 
-export const UserLoginData: UserLogin = {
+export const UserLoginModelData: UserLoginModel = {
   userEmail: Cypress.env('userEmail') ?? '[NOT SET]',
   userPassword: Cypress.env('userPassword') ?? '[NOT SET]',
 };
-export const UserData: UserName = {
+export const UserData: UserNameModel = {
   userName: Cypress.env('userName') ?? '[NOT SET]',
 };

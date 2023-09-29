@@ -1,5 +1,5 @@
 import { LoginPage } from '../pages/login.page';
-import { UserData, UserLoginData } from '../test-data/user.data';
+import { UserData, UserLoginModelData } from '../test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Verify login', () => {
@@ -12,7 +12,7 @@ test.describe('Verify login', () => {
   test('Login with correct credentials @GEN-S1-01', async ({}) => {
     // Act
     await loginPage.goto();
-    await loginPage.login(UserLoginData);
+    await loginPage.login(UserLoginModelData);
 
     // Assert
     await expect(
@@ -22,12 +22,12 @@ test.describe('Verify login', () => {
   });
   test('Reject login with incorrect password @GEN-S1-01', async ({}) => {
     // Arrange
-    const errorMessage = `Error: The password you entered for the username ${UserLoginData.userEmail} is incorrect. Lost your password?`;
+    const errorMessage = `Error: The password you entered for the username ${UserLoginModelData.userEmail} is incorrect. Lost your password?`;
 
     // Act
     await loginPage.goto();
     await loginPage.login({
-      userEmail: UserLoginData.userEmail,
+      userEmail: UserLoginModelData.userEmail,
       userPassword: 'invalidPassword',
     });
 

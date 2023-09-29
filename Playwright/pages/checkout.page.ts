@@ -1,4 +1,4 @@
-import { UserCheckoutData } from '../models/user-checkout.model';
+import { UserCheckoutDataModel } from '../models/user-checkout.model';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -25,7 +25,7 @@ export class CheckoutPage extends BasePage {
     super(page);
   }
 
-  async fillOutTheForm(userFormData: UserCheckoutData): Promise<void> {
+  async fillOutTheForm(userFormData: UserCheckoutDataModel): Promise<void> {
     await this.userFirstName.type(userFormData.userFirstName, { delay: 50 });
     await this.userLastName.type(userFormData.userLastName, { delay: 50 });
     await this.userCountry.click();

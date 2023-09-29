@@ -1,5 +1,5 @@
 import { LoginPage } from '../pages/login.page';
-import { UserData, UserLoginData } from '../test-data/user.data';
+import { UserData, UserLoginModelData } from '../test-data/user.data';
 
 describe('Verify login', () => {
   const loginPage = new LoginPage();
@@ -10,7 +10,7 @@ describe('Verify login', () => {
 
   it('Login with correct user data', () => {
     // Act
-    loginPage.login(UserLoginData);
+    loginPage.login(UserLoginModelData);
 
     //Assert
     loginPage.welcomeText().should('include.text', UserData.userName);
@@ -18,11 +18,11 @@ describe('Verify login', () => {
 
   it('Reject login with incorrect password', () => {
     // Arrange
-    const errorMessage = `Error: The password you entered for the username ${UserLoginData.userEmail} is incorrect. Lost your password?`;
+    const errorMessage = `Error: The password you entered for the username ${UserLoginModelData.userEmail} is incorrect. Lost your password?`;
 
     // Act
     loginPage.login({
-      userEmail: UserLoginData.userEmail,
+      userEmail: UserLoginModelData.userEmail,
       userPassword: 'incorrectPassword',
     });
 

@@ -1,4 +1,4 @@
-import { RegisterUser } from '../models/user.model';
+import { RegisterUserModel } from '../models/user.model';
 import { Locator } from '../support/types';
 import { BasePage } from './base.page';
 
@@ -18,13 +18,13 @@ export class RegisterPage extends BasePage {
     return cy.get('#post-8 > div.woocommerce > div > p').first();
   }
   emailErrorText(): Locator {
-    return cy.get('#post-8 > div.woocommerce > ul > li')
+    return cy.get('#post-8 > div.woocommerce > ul > li');
   }
   constructor() {
     super();
   }
 
-  registerNewUser(registerUserData: RegisterUser): void {
+  registerNewUser(registerUserData: RegisterUserModel): void {
     this.registerEmailInput().type(registerUserData.userEmail);
     this.registerPasswordInput().type(registerUserData.userPassword);
     this.registerButton().click();

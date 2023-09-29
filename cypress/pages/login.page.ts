@@ -1,4 +1,4 @@
-import { UserLogin } from '../models/user.model';
+import { UserLoginModel } from '../models/user.model';
 import { Locator } from '../support/types';
 import { BasePage } from './base.page';
 
@@ -25,7 +25,7 @@ export class LoginPage extends BasePage {
     super();
   }
 
-  login(userLoginData: UserLogin): void {
+  login(userLoginData: UserLoginModel): void {
     this.userNameInput().type(userLoginData.userEmail);
     this.userPasswordInput().type(userLoginData.userPassword);
     this.loginButton().click();

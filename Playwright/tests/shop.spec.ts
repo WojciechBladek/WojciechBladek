@@ -1,4 +1,4 @@
-import { randomUserCheckoutData } from '../factories/user-checkout.factory';
+import { randomUserCheckoutDataModel } from '../factories/user-checkout.factory';
 import { CartPage } from '../pages/cart.page';
 import { CheckoutPage } from '../pages/checkout.page';
 import { OrderReceivedPage } from '../pages/order-received.page';
@@ -55,7 +55,7 @@ test.describe('Verify shop', () => {
     // Arrange
     const orderPage = new OrderReceivedPage(page);
     const checkoutPage = new CheckoutPage(page);
-    const randomUserFormData = randomUserCheckoutData();
+    const randomUserFormData = randomUserCheckoutDataModel();
 
     // Act
     await cartPage.goto();

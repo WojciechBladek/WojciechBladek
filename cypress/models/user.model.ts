@@ -1,13 +1,13 @@
-export interface UserLogin {
+export interface UserLoginModel {
   userEmail: string;
   userPassword: string;
 }
 
-export interface UserName {
+export interface UserNameModel {
   userName: string;
 }
 
-export interface RegisterUser {
+export interface RegisterUserModel {
   userEmail: string;
   userPassword: string;
 }

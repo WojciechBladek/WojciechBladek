@@ -1,8 +1,8 @@
-import { UserCheckoutData } from '../models/user-checkout.model';
+import { UserCheckoutDataModel } from '../models/user-checkout.model';
 import { faker } from '@faker-js/faker/locale/en';
 
-export function randomUserCheckoutData(): UserCheckoutData {
-  const CheckoutUserData: UserCheckoutData = {
+export function randomUserCheckoutDataModel(): UserCheckoutDataModel {
+  const CheckoutUserData: UserCheckoutDataModel = {
     userFirstName: faker.person.firstName().replace(/[^A-Za-z]/g, ''),
     userLastName: faker.person.lastName().replace(/[^A-Za-z]/g, ''),
     userStreetAddress: faker.location.street().replace(/[^A-Za-z]/g, ''),
