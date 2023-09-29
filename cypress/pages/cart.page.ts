@@ -2,7 +2,7 @@ import { Locator } from '../support/types';
 import { BasePage } from './base.page';
 
 export class CartPage extends BasePage {
-  url = '/shop/';
+  url = '/cart/';
 
   cartIsEmptyText(): Locator {
     return cy.get('.cart-empty');
