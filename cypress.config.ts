@@ -17,5 +17,6 @@ export default defineConfig({
       userPassword: process.env.USER_PASSWORD,
       userName: process.env.USER_NAME,
     },
+    experimentalRunAllSpecs: true,
   },
 });

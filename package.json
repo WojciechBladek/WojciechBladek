@@ -14,7 +14,8 @@
     "test:headed": "npm run test -- --headed",
     "test:ui": "npm run test -- --ui",
     "show-report": "npx playwright show-report",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:all-tests" : "npx cypress run"
   },
   "keywords": [],
   "author": "",
