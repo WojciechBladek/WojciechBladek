@@ -7,7 +7,6 @@ import { expect, test } from '@playwright/test';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Verify shop', () => {
-  test.use({ storageState: 'playwright/.auth/user.json' });
   let shopPage: ShopPage;
   let productName: string;
   let cartPage: CartPage;
@@ -17,7 +16,7 @@ test.describe('Verify shop', () => {
     cartPage = new CartPage(page);
   });
 
-  test('Add item to cart @GEN-S3-01', async ({}) => {
+  test('Add item to cart @GEN-S3-01 @logged', async ({}) => {
     // Arrange
     await shopPage.goto();
     productName = await shopPage.getRandomProductName();
@@ -35,7 +34,7 @@ test.describe('Verify shop', () => {
     );
   });
 
-  test('Update product value @GEN-S3-02', async ({}) => {
+  test('Update product value @GEN-S3-02 @logged', async ({}) => {
     // Arrange
     const exceptedProductValue = '2';
     const exceptedCartUpdatedText = 'Cart updated.';
@@ -51,7 +50,7 @@ test.describe('Verify shop', () => {
     await expect(cartPage.cartUpdatedText).toHaveText(exceptedCartUpdatedText);
   });
 
-  test('Make an order @GEN-S3-03', async ({ page }) => {
+  test('Make an order @GEN-S3-03 @logged', async ({ page }) => {
     // Arrange
     const orderPage = new OrderReceivedPage(page);
     const checkoutPage = new CheckoutPage(page);

@@ -13,9 +13,10 @@
     "test": "npx playwright test",
     "test:headed": "npm run test -- --headed",
     "test:ui": "npm run test -- --ui",
+    "test:all-projects": "npx playwright test --project 'chromium-logged' 'chromium-non-logged'",
     "show-report": "npx playwright show-report",
     "cypress:open": "cypress open",
-    "cypress:all-tests" : "npx cypress run"
+    "cypress:all-tests": "npx cypress run"
   },
   "keywords": [],
   "author": "",
