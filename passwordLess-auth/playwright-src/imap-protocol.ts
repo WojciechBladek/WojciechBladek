@@ -1,27 +1,11 @@
-/* eslint-disable */
-import fs from 'fs';
+import { admin, user } from '@_playwright-src/test-data/user.data';
 import Imap from 'imap';
 import { simpleParser } from 'mailparser';
 
-interface EnvData {
-  admin: {
-    email: string;
-    password: string;
-  };
-  user: {
-    email: string;
-    password: string;
-  };
-  basicToken: string;
-}
-
-const rawData = fs.readFileSync('./playwright.env.json');
-export const envData: EnvData = JSON.parse(rawData.toString());
-
 // Configuring an IMAP connection
 export const imapConfigAdmin: Imap.Config = {
-  user: envData.admin.email,
-  password: envData.admin.password,
+  user: admin.email,
+  password: admin.password,
   host: 'imap.gmail.com',
   port: 993,
   tls: true,
@@ -29,8 +13,8 @@ export const imapConfigAdmin: Imap.Config = {
 };
 
 export const imapConfigUser: Imap.Config = {
-  user: envData.user.email,
-  password: envData.user.password,
+  user: user.email,
+  password: user.password,
   host: 'imap.gmail.com',
   port: 993,
   tls: true,
@@ -81,10 +65,7 @@ export function listenForNewMessages(config: Imap.Config): Promise<string> {
         imap.on('mail', (numNewMsgs) => {
           console.log(`New messages: ${numNewMsgs}`);
 
-          const fetch = imap.seq.fetch(
-            `${box.messages.total - numNewMsgs + 1}:${box.messages.total}`,
-            { bodies: '' },
-          );
+          const fetch = imap.seq.fetch(`${box.messages.total - numNewMsgs + 1}:${box.messages.total}`, { bodies: '' });
 
           fetch.on('message', (msg, seqno) => {
             msg.on('body', (stream) => {
