@@ -15,7 +15,10 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 0 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: [["html"], 
+  ["github"],
+  ["json", {outputFile: './playwright-report/results.json'}], 
+  ["junit", {outputFile: './playwright-report/results.xml'}]],
   use: {
     baseURL: BASE_URL,
     trace: 'retain-on-failure',
