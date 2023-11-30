@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import { InboxPage } from '@_playwright-src/pages/inbox.pages';
 
 export class RejectFeedbackModal {
   reasonOption = this.page.getByTestId('checkbox-wrapper-app-checkbox').locator('.checkbox');
@@ -9,7 +10,7 @@ export class RejectFeedbackModal {
 
   constructor(private page: Page) {}
 
-  async selectReasonAndRejectFeedback(reasonText?: string): Promise<void> {
+  async selectReasonAndRejectFeedback(reasonText?: string): Promise<InboxPage> {
     for (let i = 0; i < 4; i++) {
       await this.reasonOption.nth(i).click();
     }
@@ -18,5 +19,11 @@ export class RejectFeedbackModal {
       await this.feedbackContentInput.fill(reasonText);
     }
     await this.rejectButton.click();
+    return new InboxPage(this.page);
+  }
+
+  async clickRejectButton(): Promise<InboxPage> {
+    await this.rejectButton.click();
+    return new InboxPage(this.page);
   }
 }

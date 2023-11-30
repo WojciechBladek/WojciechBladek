@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { OutboxPage } from '@_playwright-src/pages/outbox.pages';
 import { loginAdminViaImap } from '@_playwright-src/test-data/user.data';
 
-test.describe('Verify second menu on Outbox page @admin', () => {
+test.describe('Verify second menu on Outbox page @smoke', () => {
   test.use({ storageState: loginAdminViaImap.path });
   let outboxPage: OutboxPage;
 
@@ -29,7 +29,7 @@ test.describe('Verify second menu on Outbox page @admin', () => {
       const exceptedPageTitle = 'Pending recording';
 
       // Act
-      await outboxPage.pendingRecordingButton.click();
+      outboxPage = await outboxPage.clickPendingRecordingButton();
       await outboxPage.waitForPageToLoadUrl();
       const pageTitle = await outboxPage.getTitle();
 
@@ -37,9 +37,8 @@ test.describe('Verify second menu on Outbox page @admin', () => {
       expect(pageTitle, 'Link pending recording working').toContain(exceptedPageTitle);
     });
   });
-  test.fixme('verify buttons are disabled', async () => {
+  test('verify buttons are disabled', async () => {
     // Assert
-    //TODO: developer task, button should have attribute is disabled.
-    await expect(outboxPage.archiveDisabledButton, 'Button archive is disabled').toBeDisabled();
+    await expect(outboxPage.archiveDisabledButton, 'Button archive is disabled').toHaveAttribute('class', /blocked/);
   });
 });

@@ -11,4 +11,9 @@ export class OutboxPage extends BasePage {
   constructor(page: Page) {
     super(page);
   }
+
+  async clickPendingRecordingButton(): Promise<OutboxPage>{
+    await this.pendingRecordingButton.click()
+    return new OutboxPage(this.page)
+  }
 }

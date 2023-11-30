@@ -1,30 +1,47 @@
-import { ThematicAreaView } from '@_playwright-src/views/thematic-area.view';
 import { Locator, Page } from '@playwright/test';
+import { InboxPage } from '@_playwright-src/pages/inbox.pages';
+import { ThematicAreaView } from '@_playwright-src/views/thematic-area.view';
 
 export class ReviewFeedbackView {
   thematicAreaView = new ThematicAreaView(this.page);
 
-  feedbackContentInput = this.page.getByTestId('loop-textarea-textarea');
+  feedbackContentInput = this.page.getByTestId('loop-textarea-textarea').first();
+  feedbackEditContentInput = this.page.getByTestId('loop-textarea-textarea').last();
   authorInput = this.page.getByPlaceholder('Keep author anonymous');
   organizationInput = this.page.getByTestId('organisation-list').getByTestId('simple-tag__name');
   thematicAreaButton = this.page.getByTestId('form-section-app-fab-btn-add');
   translateButton = this.page.getByTestId('submit-button').locator('>button');
   publishFeedbackButton = this.page.getByRole('button', { name: 'Publish feedback' });
   rejectButton = this.page.getByTestId('reject-button');
-  alertPopUp = this.page.getByLabel('Please fill in all the elements marked with “required” in order to proceed.')
+  alertPopUp = this.page.getByLabel('Please fill in all the elements marked with “required” in order to proceed.');
+  editFeedbackToggleButton = this.page.locator('.slider-container').getByTestId('slider').first();
+  invalidContentLengthPopUp = this.page.getByTestId('validationError').last();
 
   constructor(private page: Page) {}
 
-  async publishFeedback(): Promise<void> {
+  async publishFeedback(): Promise<InboxPage> {
     await this.thematicAreaButton.click();
     await this.thematicAreaView.setThematicAreaCategory();
     await this.translateButton.click();
     await this.publishFeedbackButton.click();
+    return new InboxPage(this.page);
   }
 
-  async goToTranslateStep(): Promise<void> {
+  async goToTranslateStep(): Promise<InboxPage> {
     await this.thematicAreaButton.click();
     await this.thematicAreaView.setThematicAreaCategory();
+    await this.translateButton.click();
+    return new InboxPage(this.page);
+  }
+
+  async clickPublishFeedbackButton(): Promise<InboxPage> {
+    await this.publishFeedbackButton.click();
+    return new InboxPage(this.page);
+  }
+
+  async saveEditedFeedbackContent(content?: string): Promise<void> {
+    await this.editFeedbackToggleButton.click();
+    content ? await this.feedbackEditContentInput.fill(content) : await this.feedbackEditContentInput.clear();
     await this.translateButton.click();
   }
 

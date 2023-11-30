@@ -1,6 +1,5 @@
 import { expect, test } from '@playwright/test';
 import { getRandomUserEmail } from '@_playwright-src/factories/user.factory';
-import { FeedbackPage } from '@_playwright-src/pages/feedback.pages';
 import { LoginPage } from '@_playwright-src/pages/login.pages';
 
 test.describe('Verify login', () => {
@@ -10,7 +9,7 @@ test.describe('Verify login', () => {
     await loginPage.goto();
   });
 
-  test('login with correct credentials @LOOP_R01_01 @LOOP_R01_02', async ({ page }) => {
+  test('login with correct credentials @LOOP_R01_01 @LOOP_R01_02', async ({  }) => {
     // Arrange
     const exceptedEmailResendTextIsDisplayed = 'Resend mail (';
     const userEmailData = getRandomUserEmail();
@@ -27,10 +26,9 @@ test.describe('Verify login', () => {
     await test.step('verify continue without an account button', async () => {
       // Arrange
       const expectedPageTitle = 'Feedback';
-      const feedbackPage = new FeedbackPage(page);
 
       // Act
-      await loginPage.continueWithoutAccountButton.click();
+      const feedbackPage = await loginPage.clickContinueWithoutAccountButton();
       await feedbackPage.waitForPageToLoadUrl();
       const pageTitle = await feedbackPage.getTitle();
 

@@ -1,16 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { prepareRandomFeedbackData } from '@_playwright-src/factories/provide-feedback.factory';
-import { ProvideFeedbackFixture } from '@_playwright-src/fixtures/provide-feedback.fixtures';
+import { ProvideFeedbackFixture } from '@_playwright-src/fixtures/provide-feedback-api.fixtures';
 import { InboxPage } from '@_playwright-src/pages/inbox.pages';
 import { ProvideFeedbackPage } from '@_playwright-src/pages/provide-feedback.pages';
-import { adminPath, loginAdminViaImap } from '@_playwright-src/test-data/user.data';
+import {} from '@_playwright-src/test-data/user.data';
 import { ReviewFeedbackView } from '@_playwright-src/views/review-feedback.view';
 
 test.describe('Verify create new feedback @admin', () => {
-  test.use({
-    storageState: loginAdminViaImap.path,
-  });
-
   let provideFeedbackPage: ProvideFeedbackPage;
   let inboxPage: InboxPage;
   let reviewFeedbackView: ReviewFeedbackView;
@@ -36,7 +32,7 @@ test.describe('Verify create new feedback @admin', () => {
 
     // Assert
     await expect(provideFeedbackPage.alertPopUpFeedbackSubmitted, 'Alert popup feedback is created is displayed').toBeVisible();
-    const getFeedbackId = await provideFeedbackFixture.getFeedbackListFromInbox(adminPath);
+    const getFeedbackId = await provideFeedbackFixture.getFeedbackID();
 
     await test.step('verify new created feedback @LOOP_R02_02', async () => {
       // Arrange
@@ -60,16 +56,14 @@ test.describe('Verify create new feedback @admin', () => {
 
     // Assert
     await expect(provideFeedbackPage.alertPopUpFeedbackSubmitted, 'Alert popup is displayed').toBeVisible();
-    const getFeedbackId = await provideFeedbackFixture.getFeedbackListFromInbox(adminPath);
+    const getFeedbackId = await provideFeedbackFixture.getFeedbackID();
 
     await test.step('verify feedback data', async () => {
       // Arrange
       inboxPage.url = `inbox/stories/story/web/${getFeedbackId}/review`;
-
+      
       // Act
       await inboxPage.goto();
-
-      // Arrange
       const expectedFeedbackContent = await reviewFeedbackView.getFeedbackInputValue();
       const expectedTypeOfFeedback = reviewFeedbackView.checkTypeOfFeedbackLocator(feedbackDetails.typeOfFeedback);
       const expectedAuthorName = await reviewFeedbackView.authorInputValue();

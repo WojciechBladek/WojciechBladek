@@ -1,15 +1,14 @@
 import { APIResponse, expect, test } from '@playwright/test';
-import { FeedbackData, ProvideFeedbackFixture } from '@_playwright-src/fixtures/provide-feedback.fixtures';
+import { FeedbackData, ProvideFeedbackFixture } from '@_playwright-src/fixtures/provide-feedback-api.fixtures';
 import { FeedbackPage } from '@_playwright-src/pages/feedback.pages';
 import { InboxPage } from '@_playwright-src/pages/inbox.pages';
-import { adminPath } from '@_playwright-src/test-data/user.data';
+import {} from '@_playwright-src/test-data/user.data';
 import { RejectFeedbackModal } from '@_playwright-src/views/reject-feedback.view';
 import { ReviewFeedbackView } from '@_playwright-src/views/review-feedback.view';
 import { StoryDetailsView } from '@_playwright-src/views/story-details.view';
 
 test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
   // Arrange
-  let inboxPage: InboxPage;
   let reviewFeedbackView: ReviewFeedbackView;
   let rejectFeedbackModal: RejectFeedbackModal;
   let getFeedbackId: APIResponse;
@@ -18,7 +17,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
 
   test.beforeEach(async ({ page, request }) => {
     // Arrange
-    inboxPage = new InboxPage(page);
+    const inboxPage = new InboxPage(page);
     reviewFeedbackView = new ReviewFeedbackView(page);
     rejectFeedbackModal = new RejectFeedbackModal(page);
     const provideFeedbackFixture = new ProvideFeedbackFixture(request);
@@ -26,26 +25,30 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
     // Act
     createFeedbackWithApi = await provideFeedbackFixture.createFeedbackViaApi();
     await expect(createFeedbackWithApi.response).toBeOK();
-    getFeedbackId = await provideFeedbackFixture.getFeedbackListFromInbox(adminPath);
+    getFeedbackId = await provideFeedbackFixture.getFeedbackID();
     inboxPage.url = `inbox/stories/story/web/${getFeedbackId}/review`;
-    translatePageUrl = `inbox/stories/story/web/${getFeedbackId}/translate`;
+    translatePageUrl = '**/translate';
     await inboxPage.goto();
   });
 
-  test('Publish feedback @LOOP_R03_01', async ({ page }) => {
+  test('Publish feedback then reject it', async ({ page }) => {
     // Act
-    await reviewFeedbackView.publishFeedback();
+    let inboxPage = await reviewFeedbackView.publishFeedback();
 
     //Assert
     await expect(inboxPage.feedbackPublishedPopUp).toBeVisible();
 
     await test.step('Reject published feedback', async () => {
       // Arrange
+      const waitForPage = '**/review';
       const storyDetailsView = new StoryDetailsView(page);
 
       // Act
-      await storyDetailsView.goToFeedback(getFeedbackId);
-      await storyDetailsView.rejectFeedback();
+      inboxPage = await storyDetailsView.goToFeedback(getFeedbackId);
+      inboxPage = await storyDetailsView.clickEditFeedback();
+      await inboxPage.waitForPageToLoadUrl(waitForPage);
+      await reviewFeedbackView.rejectButton.click();
+      inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback();
 
       // Assert
       await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeVisible();
@@ -58,7 +61,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
     const exceptedFeedback = createFeedbackWithApi.content;
 
     // Act
-    await reviewFeedbackView.publishFeedback();
+    const inboxPage = await reviewFeedbackView.publishFeedback();
     await expect(inboxPage.feedbackPublishedPopUp).toBeVisible();
     await feedbackPage.goto();
 
@@ -77,7 +80,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
   test('Reject feedback @OL-3630', async ({}) => {
     // Act
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.selectReasonAndRejectFeedback();
+    const inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback();
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeVisible();
@@ -89,7 +92,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
 
     // Act
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
+    const inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeVisible();
@@ -101,7 +104,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
 
     // Act
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
+    const inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeHidden();
@@ -110,7 +113,7 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
   test('Failure Reject feedback @OL-3630', async ({}) => {
     // Act
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.rejectButton.click();
+    const inboxPage = await rejectFeedbackModal.clickRejectButton();
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeHidden();
@@ -118,10 +121,10 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
 
   test('Failure Reject feedback on last step @OL-3630', async ({}) => {
     // Act
-    await reviewFeedbackView.goToTranslateStep();
+    let inboxPage = await reviewFeedbackView.goToTranslateStep();
     await inboxPage.waitForPageToLoadUrl(translatePageUrl);
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.rejectButton.click();
+    inboxPage = await rejectFeedbackModal.clickRejectButton();
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeHidden();
@@ -129,10 +132,10 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
 
   test('Reject feedback on last step @OL-3630', async ({}) => {
     // Act
-    await reviewFeedbackView.goToTranslateStep();
+    let inboxPage = await reviewFeedbackView.goToTranslateStep();
     await inboxPage.waitForPageToLoadUrl(translatePageUrl);
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.selectReasonAndRejectFeedback();
+    inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback();
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeVisible();
@@ -143,10 +146,10 @@ test.describe('Verify feedback publish and reject @OL-3630 @admin', () => {
     const reasonText = 'The feedback has offensive or discriminatory language in it';
 
     // Act
-    await reviewFeedbackView.goToTranslateStep();
+    let inboxPage = await reviewFeedbackView.goToTranslateStep();
     await inboxPage.waitForPageToLoadUrl(translatePageUrl);
     await reviewFeedbackView.rejectButton.click();
-    await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
+    inboxPage = await rejectFeedbackModal.selectReasonAndRejectFeedback(reasonText);
 
     // Assert
     await expect(inboxPage.feedbackRejectedPopUp, 'Feedback has been rejected.').toBeVisible();

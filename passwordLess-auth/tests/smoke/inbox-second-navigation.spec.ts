@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { InboxPage } from '@_playwright-src/pages/inbox.pages';
 import { loginAdminViaImap } from '@_playwright-src/test-data/user.data';
 
-test.describe('Verify second menu on Inbox page @admin', () => {
+test.describe('Verify second menu on Inbox page @smoke', () => {
   test.use({ storageState: loginAdminViaImap.path });
   let inboxPage: InboxPage;
 
@@ -13,11 +13,11 @@ test.describe('Verify second menu on Inbox page @admin', () => {
   test('verify replies button', async () => {
     // Arrange
     const exceptedPageTitle = 'Replies';
-    const inboxRepliesUrl = 'inbox/replies';
+    const inboxRepliesUrl = '**/replies';
 
     // Act
     await inboxPage.goto();
-    await inboxPage.repliesButton.click();
+    inboxPage = await inboxPage.clickRepliesButton();
     await inboxPage.waitForPageToLoadUrl(inboxRepliesUrl);
     const pageTitle = await inboxPage.getTitle();
 
@@ -29,22 +29,12 @@ test.describe('Verify second menu on Inbox page @admin', () => {
       const exceptedPageTitle = 'Feedback';
 
       // Act
-      await inboxPage.feedbackButton.click();
+      inboxPage = await inboxPage.clickFeedbackButton();
       await inboxPage.waitForPageToLoadUrl();
       const pageFeedbackTitle = await inboxPage.getTitle();
 
       // Assert
       expect(pageFeedbackTitle, 'Link feedback working').toContain(exceptedPageTitle);
     });
-  });
-
-  test.fixme('verify buttons are disabled', async () => {
-    // Act
-    await inboxPage.goto();
-
-    // Assert
-    //TODO: developer task, button should have attribute is disabled.
-    await expect(inboxPage.rejectionsButton, 'Button rejections is disabled').toBeDisabled();
-    await expect(inboxPage.requestButton, 'Button requests is disabled').toBeDisabled();
   });
 });

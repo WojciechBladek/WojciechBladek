@@ -9,4 +9,14 @@ export class StatisticsPage extends BasePage {
   constructor(page: Page) {
     super(page);
   }
+
+  async clickOpenFeedbackButton(): Promise<StatisticsPage> {
+    await this.openFeedbackButton.click();
+    return new StatisticsPage(this.page);
+  }
+
+  async clickSensitiveCasesButton(): Promise<StatisticsPage> {
+    await this.sensitiveCasesButton.click();
+    return new StatisticsPage(this.page);
+  }
 }

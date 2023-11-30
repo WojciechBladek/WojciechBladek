@@ -1,3 +1,5 @@
+/* eslint-disable playwright/no-networkidle */
+import { Locator } from '@playwright/test';
 import { Page } from 'playwright';
 
 export class BasePage {
@@ -6,7 +8,6 @@ export class BasePage {
   constructor(protected page: Page) {}
 
   async goto(): Promise<void> {
-    // eslint-disable-next-line playwright/no-networkidle
     await this.page.goto(this.url, { waitUntil: 'networkidle' });
   }
 
@@ -20,5 +21,9 @@ export class BasePage {
     } else {
       await this.page.waitForURL(this.url);
     }
+  }
+
+  async waitForLoadLocator(locator: Locator): Promise<void> {
+    await locator.waitFor();
   }
 }

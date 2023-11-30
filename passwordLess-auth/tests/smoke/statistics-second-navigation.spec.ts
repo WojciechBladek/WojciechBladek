@@ -2,12 +2,13 @@ import { expect, test } from '@playwright/test';
 import { StatisticsPage } from '@_playwright-src/pages/statistics.pages';
 import { loginAdminViaImap } from '@_playwright-src/test-data/user.data';
 
-test.describe('Verify second menu on Statistics page @admin', () => {
+test.describe('Verify second menu on Statistics page @smoke', () => {
   test.use({ storageState: loginAdminViaImap.path });
   let statisticsPage: StatisticsPage;
 
   test.beforeEach(async ({ page }) => {
     statisticsPage = new StatisticsPage(page);
+    await statisticsPage.goto();
   });
 
   test('verify sensitive cases button', async () => {
@@ -16,8 +17,7 @@ test.describe('Verify second menu on Statistics page @admin', () => {
     const sensitiveCasesUrl = 'statistics/sensitive-cases';
 
     // Act
-    await statisticsPage.goto();
-    await statisticsPage.sensitiveCasesButton.click();
+    statisticsPage = await statisticsPage.clickSensitiveCasesButton();
     await statisticsPage.waitForPageToLoadUrl(sensitiveCasesUrl);
     const pageTitle = await statisticsPage.getTitle();
 
@@ -30,8 +30,7 @@ test.describe('Verify second menu on Statistics page @admin', () => {
     const exceptedPageTitle = 'Open feedback';
 
     // Act
-    await statisticsPage.goto();
-    await statisticsPage.openFeedbackButton.click();
+    statisticsPage = await statisticsPage.clickOpenFeedbackButton();
     await statisticsPage.waitForPageToLoadUrl();
     const pageTitle = await statisticsPage.getTitle();
 
