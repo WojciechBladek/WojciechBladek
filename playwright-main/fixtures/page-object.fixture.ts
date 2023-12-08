@@ -1,8 +1,8 @@
-import { CartPage } from '../pages/cart.page';
-import { CheckoutPage } from '../pages/checkout.page';
-import { LoginPage } from '../pages/login.page';
-import { RegisterPage } from '../pages/register.page';
-import { ShopPage } from '../pages/shop.page';
+import { CartPage } from '@_playwright-main/pages/cart.page';
+import { CheckoutPage } from '@_playwright-main/pages/checkout.page';
+import { LoginPage } from '@_playwright-main/pages/login.page';
+import { RegisterPage } from '@_playwright-main/pages/register.page';
+import { ShopPage } from '@_playwright-main/pages/shop.page';
 import { test as baseTest } from '@playwright/test';
 
 interface Pages {

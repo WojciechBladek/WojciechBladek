@@ -1,6 +1,6 @@
-import { UserCheckoutDataModel } from '../models/user-checkout.model';
-import { BasePage } from './base.page';
-import { OrderReceivedPage } from './order-received.page';
+import { UserCheckoutDataModel } from '@_playwright-main/models/user-checkout.model';
+import { BasePage } from '@_playwright-main/pages/base.page';
+import { OrderReceivedPage } from '@_playwright-main/pages/order-received.page';
 import { Page } from '@playwright/test';
 
 export class CheckoutPage extends BasePage {

@@ -1,7 +1,7 @@
-import { randomUserData } from '../factories/user.factory';
-import { expect, test } from '../fixtures/merge.fixture';
-import { RegisterUserModel } from '../models/user.model';
-import { LoginPage } from '../pages/login.page';
+import { randomUserData } from '@_playwright-main/factories/user.factory';
+import { expect, test } from '@_playwright-main/fixtures/merge.fixture';
+import { RegisterUserModel } from '@_playwright-main/models/user.model';
+import { LoginPage } from '@_playwright-main/pages/login.page';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Verify register', () => {

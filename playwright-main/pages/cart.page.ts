@@ -1,5 +1,5 @@
-import { BasePage } from './base.page';
-import { CheckoutPage } from './checkout.page';
+import { BasePage } from '@_playwright-main/pages/base.page';
+import { CheckoutPage } from '@_playwright-main/pages/checkout.page';
 import { Locator, Page } from '@playwright/test';
 
 export class CartPage extends BasePage {

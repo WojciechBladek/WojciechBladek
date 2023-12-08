@@ -1,7 +1,7 @@
-import { STORAGE_PATH } from '../../playwright.config';
-import { randomUserData } from '../factories/user.factory';
-import { RegisterPage } from '../pages/register.page';
-import { pageObjectTest } from './page-object.fixture';
+import { randomUserData } from '@_playwright-main/factories/user.factory';
+import { pageObjectTest } from '@_playwright-main/fixtures/page-object.fixture';
+import { RegisterPage } from '@_playwright-main/pages/register.page';
+import { STORAGE_PATH } from '@_pw-config';
 
 interface Register {
   registerNewUser: RegisterPage;

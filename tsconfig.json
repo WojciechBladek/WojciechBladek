@@ -3,7 +3,13 @@
     "target": "ES2021",
     "module": "CommonJS",
     "lib": ["ES2021", "dom"],
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@_playwright-main/*": ["playwright-main/*"],
+      "@_pw-config": ["playwright.config.ts"],
+      "@_config/*": ["config/*"]
+    }
   },
   "sourceMap": true,
   "include": ["**/*.ts"]

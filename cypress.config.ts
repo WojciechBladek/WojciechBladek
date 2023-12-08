@@ -1,4 +1,9 @@
-import { BASE_URL, USER_EMAIL, USER_NAME, USER_PASSWORD } from './env.config';
+import {
+  BASE_URL,
+  USER_EMAIL,
+  USER_NAME,
+  USER_PASSWORD,
+} from './config/env.config';
 import { defineConfig } from 'cypress';
 
 export default defineConfig({

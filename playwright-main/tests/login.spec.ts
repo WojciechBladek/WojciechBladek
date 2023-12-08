@@ -1,5 +1,8 @@
-import { expect, test } from '../fixtures/merge.fixture';
-import { UserData, UserLoginModelData } from '../test-data/user.data';
+import { expect, test } from '@_playwright-main/fixtures/merge.fixture';
+import {
+  UserData,
+  UserLoginModelData,
+} from '@_playwright-main/test-data/user.data';
 
 test.describe('Verify login', () => {
   test('Login with correct credentials @GEN-S1-01', async ({ loginPage }) => {

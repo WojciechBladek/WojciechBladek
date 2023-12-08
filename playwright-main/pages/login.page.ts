@@ -1,5 +1,5 @@
-import { UserLoginModel } from '../models/user.model';
-import { BasePage } from './base.page';
+import { UserLoginModel } from '@_playwright-main/models/user.model';
+import { BasePage } from '@_playwright-main/pages/base.page';
 import { Page } from '@playwright/test';
 
 export class LoginPage extends BasePage {

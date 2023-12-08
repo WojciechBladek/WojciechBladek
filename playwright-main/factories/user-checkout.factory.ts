@@ -1,4 +1,4 @@
-import { UserCheckoutDataModel } from '../models/user-checkout.model';
+import { UserCheckoutDataModel } from '@_playwright-main/models/user-checkout.model';
 import { faker } from '@faker-js/faker/locale/en';
 
 export function randomUserCheckoutDataModel(): UserCheckoutDataModel {

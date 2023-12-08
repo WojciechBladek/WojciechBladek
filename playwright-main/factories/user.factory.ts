@@ -1,4 +1,4 @@
-import { RegisterUserModel } from '../models/user.model';
+import { RegisterUserModel } from '@_playwright-main/models/user.model';
 import { faker } from '@faker-js/faker/locale/en';
 
 export function randomUserData(): RegisterUserModel {

@@ -1,5 +1,5 @@
-import { randomUserCheckoutDataModel } from '../factories/user-checkout.factory';
-import { expect, test } from '../fixtures/merge.fixture';
+import { randomUserCheckoutDataModel } from '@_playwright-main/factories/user-checkout.factory';
+import { expect, test } from '@_playwright-main/fixtures/merge.fixture';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Verify shop', () => {

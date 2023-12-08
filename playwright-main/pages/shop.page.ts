@@ -1,6 +1,6 @@
-import { getRandomValue } from '../helpers/randomValue.helper';
-import { BasePage } from './base.page';
-import { CartPage } from './cart.page';
+import { getRandomValue } from '@_playwright-main/helpers/randomValue.helper';
+import { BasePage } from '@_playwright-main/pages/base.page';
+import { CartPage } from '@_playwright-main/pages/cart.page';
 import { Page } from '@playwright/test';
 
 export class ShopPage extends BasePage {
