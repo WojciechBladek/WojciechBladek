@@ -1,11 +1,12 @@
 import { randomUserCheckoutDataModel } from '../factories/user-checkout.factory';
 import { expect, test } from '../fixtures/merge.fixture';
+import { CheckoutPage } from '../pages/checkout.page';
+import { OrderReceivedPage } from '../pages/order-received.page';
 
-test.describe.configure({ mode: 'serial' });
 test.describe('Verify shop', () => {
   let productName: string;
 
-  test('Add item to cart @GEN-S3-01 @logged', async ({ shopPage }) => {
+  test('Add item to cart @GEN-S3-01 @logged', async ({ shopPage, page }) => {
     // Arrange
     productName = await shopPage.getRandomProductName();
 
@@ -13,9 +14,10 @@ test.describe('Verify shop', () => {
     await shopPage.addItemToCart(productName);
     const cartPage = await shopPage.clickMyCartButton();
     await cartPage.waitForPageToLoadUrl();
-
+    const logIt = await page.locator('[data-title="Product"]').textContent({});
+    console.log(logIt);
     // Assert
-    await expect(cartPage.productLocator(productName)).toBeVisible();
+    await expect(page.getByText(productName)).toBeVisible();
   });
 
   test('Update product value @GEN-S3-02 @logged', async ({ cartPage }) => {
@@ -33,15 +35,17 @@ test.describe('Verify shop', () => {
     await expect(cartPage.cartUpdatedText).toHaveText(exceptedCartUpdatedText);
   });
 
-  test('Make an order @GEN-S3-03 @logged', async ({ cartPage }) => {
+  test('Make an order @GEN-S3-03 @logged', async ({ page, cartPage }) => {
     // Arrange
+    const orderPage = new OrderReceivedPage(page);
+    const checkoutPage = new CheckoutPage(page);
     const randomUserFormData = randomUserCheckoutDataModel();
 
     // Act
-    const checkoutPage = await cartPage.clickButtonProceedToCheckout();
+    await cartPage.proceedToCheckoutButton.click({ delay: 200 });
     await checkoutPage.waitForPageToLoadUrl();
     await checkoutPage.fillOutTheForm(randomUserFormData);
-    const orderPage = await checkoutPage.clickPlaceOrderButton();
+    await checkoutPage.placeOrderButton.click({ delay: 2000 });
 
     if (await checkoutPage.errorMessage.isVisible()) {
       await checkoutPage.placeOrderButton.click({ delay: 2000 });

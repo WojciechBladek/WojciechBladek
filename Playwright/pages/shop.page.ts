@@ -35,10 +35,11 @@ export class ShopPage extends BasePage {
     return await getRandomValue(productNames);
   }
 
-  async clickMyCartButton(): Promise<void> {
+  async clickMyCartButton(): Promise<CartPage> {
     await this.myCartButton.click();
     if (this.cartPage.cartIsEmpty) {
       await this.myCartButton.click();
     }
+    return new CartPage(this.page);
   }
 }

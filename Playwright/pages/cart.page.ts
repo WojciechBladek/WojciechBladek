@@ -1,5 +1,6 @@
 import { BasePage } from './base.page';
-import { Page } from '@playwright/test';
+import { CheckoutPage } from './checkout.page';
+import { Locator, Page } from '@playwright/test';
 
 export class CartPage extends BasePage {
   url = '/cart/';
@@ -21,5 +22,14 @@ export class CartPage extends BasePage {
   async increaseProductValue(): Promise<void> {
     await this.incrementProductValue.click();
     await this.updateCartButton.click();
+  }
+
+  productLocator(productName: string): Locator {
+    return this.page.getByText(productName);
+  }
+
+  async clickButtonProceedToCheckout(): Promise<CheckoutPage> {
+    await this.proceedToCheckoutButton.click({ delay: 200 });
+    return new CheckoutPage(this.page);
   }
 }

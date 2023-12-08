@@ -1,5 +1,6 @@
 import { UserCheckoutDataModel } from '../models/user-checkout.model';
 import { BasePage } from './base.page';
+import { OrderReceivedPage } from './order-received.page';
 import { Page } from '@playwright/test';
 
 export class CheckoutPage extends BasePage {
@@ -41,5 +42,10 @@ export class CheckoutPage extends BasePage {
     });
     await this.userPhone.type(userFormData.userPhone, { delay: 100 });
     await this.userPhone.blur();
+  }
+
+  async clickPlaceOrderButton(): Promise<OrderReceivedPage> {
+    await this.placeOrderButton.click({ delay: 2000 });
+    return new OrderReceivedPage(this.page);
   }
 }
