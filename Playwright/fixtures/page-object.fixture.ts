@@ -1,5 +1,6 @@
 import { CartPage } from '../pages/cart.page';
 import { CheckoutPage } from '../pages/checkout.page';
+import { LoginPage } from '../pages/login.page';
 import { RegisterPage } from '../pages/register.page';
 import { ShopPage } from '../pages/shop.page';
 import { test as baseTest } from '@playwright/test';
@@ -9,6 +10,7 @@ interface Pages {
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
   registerPage: RegisterPage;
+  loginPage: LoginPage;
 }
 
 export const pageObjectTest = baseTest.extend<Pages>({
@@ -16,6 +18,11 @@ export const pageObjectTest = baseTest.extend<Pages>({
     const shopPage = new ShopPage(page);
     await shopPage.goto();
     await use(shopPage);
+  },
+  loginPage: async ({ page }, use) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.goto();
+    await use(loginPage);
   },
   cartPage: async ({ page }, use) => {
     const cartPage = new CartPage(page);
