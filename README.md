@@ -64,7 +64,7 @@ wojciech.enjoyBetterQuality();
 
 ## Projects coming soon
 
-- **UI automation tests using Playwright** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Playwright
+- **UI automation tests using Playwright** - https://github.com/WojciechBladek/WojciechBladek/tree/main/playwright-main
 - **automation tests using Cypress** - https://github.com/WojciechBladek/WojciechBladek/tree/main/cypress
 - **Here u can find tests writen in commercial project with new standards** [passwordless login automation] Here you will find tests written for passwordless, regular authentication is not available so here you will find sample tests using imap protocol - https://github.com/WojciechBladek/WojciechBladek/tree/main/passwordLess-auth
 - [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman

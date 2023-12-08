@@ -6,7 +6,7 @@ export const STORAGE_PATH = 'playwright/.auth/user.json';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './Playwright/tests',
+  testDir: './playwright-main/tests',
   timeout: 40 * 1000,
   expect: {
     timeout: 10000,

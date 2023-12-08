@@ -1,4 +1,4 @@
-import { randomUserData } from '../../Playwright/factories/user.factory';
+import { randomUserData } from '../../playwright-main/factories/user.factory';
 import { LoginPage } from '../pages/login.page';
 import { RegisterPage } from '../pages/register.page';
 

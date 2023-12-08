@@ -23,6 +23,12 @@ Follow instructions in app README
 - prepare local env file: `cp .env-template .env`
 - copy application main URL as value of `BASE_URL` variable in `.env` file
 
+### Update framework
+
+- install latest version of `npm i @playwright/test`
+- install latest version of browsers `npx playwright install`
+- check version `npx playwright --version`
+
 ## Use
 
 Run all tests:
