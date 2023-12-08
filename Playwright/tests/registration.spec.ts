@@ -1,21 +1,16 @@
 import { randomUserData } from '../factories/user.factory';
+import { expect, test } from '../fixtures/merge.fixture';
 import { RegisterUserModel } from '../models/user.model';
 import { LoginPage } from '../pages/login.page';
-import { RegisterPage } from '../pages/register.page';
-import { expect, test } from '@playwright/test';
 
 test.describe.configure({ mode: 'serial' });
 test.describe('Verify register', () => {
-  let registerPage: RegisterPage;
   let registerUserData: RegisterUserModel;
   let userName: string;
 
-  test.beforeEach(async ({ page }) => {
-    registerPage = new RegisterPage(page);
-    await registerPage.goto();
-  });
-
-  test('register with correct data and login @GEN-S2-01', async ({}) => {
+  test('register with correct data and login @GEN-S2-01', async ({
+    registerPage,
+  }) => {
     // Arrange
     registerUserData = randomUserData();
     userName = registerUserData.userEmail.replace('@example.tet', '');
@@ -30,7 +25,7 @@ test.describe('Verify register', () => {
     ).toHaveText(registerPage.expectedWelcomeText(userName));
   });
 
-  test('login with new account @GEN-S2-01', async ({ page }) => {
+  test('login with new account @GEN-S2-01', async ({ page, registerPage }) => {
     // Arrange
     const loginPage = new LoginPage(page);
 
@@ -44,7 +39,9 @@ test.describe('Verify register', () => {
     ).toHaveText(registerPage.expectedWelcomeText(userName));
   });
 
-  test('not register with incorrect data - email not provided @GEN-S2-02', async ({}) => {
+  test('not register with incorrect data - email not provided @GEN-S2-02', async ({
+    registerPage,
+  }) => {
     // Act
     const registerUserData = randomUserData();
 
