@@ -46,8 +46,12 @@ jobs:
        run: npx playwright install --with-deps
      - name: Create auth files for gmail tester
        run: |
+         mkdir -p authentication
+         ls -la authentication
          echo "${{ secrets.TOKEN }}" > authentication/token.json
+         ls -la authentication
          echo "${{ secrets.CREDENTIALS }}" > authentication/credentials.json
+
      - name: decode and save
        run: |
          echo "${{ secrets.ENV }}" > .env
