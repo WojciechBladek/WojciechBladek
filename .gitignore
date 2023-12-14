@@ -6,5 +6,5 @@ playwright.env.json
 testUsedInComercialProject/playwright/.auth
 .env
 playwright/.auth
-authentication/credentials.json
-authentication/token.json
+credentials.json
+token.json

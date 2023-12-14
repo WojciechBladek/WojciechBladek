@@ -1,7 +1,6 @@
 import * as path from 'path';
 
-const date = new Date().toDateString();
-
+//const date = new Date().toDateString();
 interface EmailOptions {
   subject: string;
   from: string;
@@ -19,8 +18,8 @@ interface Config {
 }
 
 const config: Config = {
-  credentialsPath: path.resolve('authentication/credentials.json'),
-  tokenPath: path.resolve('authentication/token.json'),
+  credentialsPath: path.resolve('credentials.json'),
+  tokenPath: path.resolve('token.json'),
   options: {
     subject: 'Your Magic Link',
     from: 'magic.testbox@gmail.com',
