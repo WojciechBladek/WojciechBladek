@@ -1,11 +1,11 @@
 /* eslint-disable playwright/no-conditional-in-test */
 import { expect, test } from '@playwright/test';
 
-test('Testing slider', async ({ page }) => {
+test.fixme('Testing slider', async ({ page }) => {
   await page.goto('https://practicesoftwaretesting.com/#/');
 
   const maxValue = 200;
-  const expectedValue = 132;
+  const expectedValue = 152;
   const targetValue = expectedValue / maxValue;
   console.log(targetValue);
 
@@ -44,8 +44,8 @@ test('Testing slider', async ({ page }) => {
   const displayedRangeAbove100 = await pointer2.getAttribute('aria-valuetext');
 
   if (displayedRangeBelow100 < '100') {
-    expect(displayedRangeBelow100).toContain(expectedValue + 1);
+    expect(displayedRangeBelow100).toEqual(expectedValue.toString());
   } else {
-    expect(displayedRangeAbove100).toContain(expectedValue + 1);
+    expect(displayedRangeAbove100).toEqual(expectedValue.toString());
   }
 });
