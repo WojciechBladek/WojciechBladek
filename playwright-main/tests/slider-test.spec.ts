@@ -5,7 +5,7 @@ test('Testing slider', async ({ page }) => {
   await page.goto('https://practicesoftwaretesting.com/#/');
 
   const maxValue = 200;
-  const expectedValue = 152;
+  const expectedValue = 120;
   const targetValue = expectedValue / maxValue;
   console.log(targetValue);
 
