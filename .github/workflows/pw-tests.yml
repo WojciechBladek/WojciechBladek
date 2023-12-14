@@ -44,13 +44,13 @@ jobs:
      - name: Install Playwright Browsers
        if: steps.playwright-cache.outputs.cache-hit != 'true'
        run: npx playwright install --with-deps
-     - name: decode and save
-       run: |
-         echo "${{ secrets.ENV }}" > .env
      - name: Create auth files for gmail tester
        run: |
          echo "${{ secrets.TOKEN }}" > authentication/token.json
          echo "${{ secrets.CREDENTIALS }}" > authentication/credentials.json
+     - name: decode and save
+       run: |
+         echo "${{ secrets.ENV }}" > .env
      - name: Run Playwright tests
        run: npm run test
      - name: Archive test results
