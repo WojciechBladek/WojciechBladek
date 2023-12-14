@@ -47,8 +47,8 @@ jobs:
      - name: Create auth files for gmail tester
        run: |
          mkdir -p authentication
-         echo cat "${{ secrets.TOKEN }}" > authentication/token.json
-         echo cat "${{ secrets.CREDENTIALS }}" > authentication/credentials.json
+         echo cat ${{ secrets.TOKEN }} > authentication/token.json
+         echo cat ${{ secrets.CREDENTIALS }} > authentication/credentials.json
 
      - name: decode and save
        run: |
