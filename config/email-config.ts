@@ -1,6 +1,5 @@
 import * as path from 'path';
 
-//const date = new Date().toDateString();
 interface EmailOptions {
   subject: string;
   from: string;
@@ -27,7 +26,6 @@ const config: Config = {
     wait_time_sec: 30,
     max_wait_time_sec: 60,
     include_body: true,
-    //after: new Date(date),
   },
 };
 
