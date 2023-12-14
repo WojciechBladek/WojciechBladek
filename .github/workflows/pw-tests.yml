@@ -47,6 +47,10 @@ jobs:
      - name: decode and save
        run: |
          echo "${{ secrets.ENV }}" > .env
+     - name: Create auth files for gmail tester
+       run: |
+         echo "${{ secrets.TOKEN }}" > authentication/token.json
+         echo "${{ secrets.CREDENTIALS }}" > authentication/credentials.json
      - name: Run Playwright tests
        run: npm run test
      - name: Archive test results
