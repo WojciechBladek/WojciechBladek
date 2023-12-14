@@ -40,8 +40,8 @@ test('Testing slider', async ({ page }) => {
     },
   });
 
-  const displayedRangeBelow100 = await pointer.getAttribute('aria-valuetext');
-  const displayedRangeAbove100 = await pointer2.getAttribute('aria-valuetext');
+  const displayedRangeBelow100 = await pointer.getAttribute('aria-valuetext') + 1;
+  const displayedRangeAbove100 = await pointer2.getAttribute('aria-valuetext') + 1;
 
   if (displayedRangeBelow100 < '100') {
     expect(displayedRangeBelow100).toEqual(expectedValue.toString());
