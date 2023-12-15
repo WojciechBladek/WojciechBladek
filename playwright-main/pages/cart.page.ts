@@ -20,7 +20,7 @@ export class CartPage extends BasePage {
   }
 
   async increaseProductValue(): Promise<void> {
-    await this.incrementProductValue.click();
+    await this.incrementProductValue.first().click();
     await this.updateCartButton.click();
   }
 
