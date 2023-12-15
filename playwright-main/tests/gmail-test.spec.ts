@@ -1,5 +1,4 @@
 import config from '@_config/email-config';
-import { USER_EMAIL } from '@_config/env.config';
 import { expect, test } from '@_playwright-main/fixtures/merge.fixture';
 import * as gmail from 'gmail-tester';
 
@@ -19,7 +18,7 @@ test('has email with magic link', async () => {
     config.tokenPath,
     config.options,
   );
-  console.log(USER_EMAIL);
+
   await emailTest.then((emails) => {
     const body = emails[0].body.html;
     const emailMessage = extractUrlFromATag(body);

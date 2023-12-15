@@ -23,7 +23,7 @@ const config: Config = {
   options: {
     subject: 'Your Magic Link',
     from: USER_EMAIL,
-    to: 'magic.testbox@gmail.com',
+    to: USER_EMAIL,
     wait_time_sec: 30,
     max_wait_time_sec: 60,
     include_body: true,
