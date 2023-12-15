@@ -1,4 +1,3 @@
-import { USER_EMAIL } from './env.config';
 import * as path from 'path';
 
 interface EmailOptions {
@@ -22,8 +21,8 @@ const config: Config = {
   tokenPath: path.resolve('token.json'),
   options: {
     subject: 'Your Magic Link',
-    from: `${USER_EMAIL}`,
-    to: `${USER_EMAIL}`,
+    from: 'magic.testbox@gmail.com',
+    to: 'magic.testbox@gmail.com',
     wait_time_sec: 30,
     max_wait_time_sec: 60,
     include_body: true,
