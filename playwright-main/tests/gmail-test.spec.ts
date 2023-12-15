@@ -8,7 +8,7 @@ const extractUrlFromATag = (input: string): string => {
   return match ? match[1] : '';
 };
 
-test.fixme('has email with magic link', async () => {
+test('has email with magic link', async () => {
   const exceptedMessage = 'https://magic-link/delivered';
 
   gmail.refresh_access_token(config.credentialsPath, config.tokenPath);
