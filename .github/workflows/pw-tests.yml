@@ -61,8 +61,7 @@ jobs:
           --name "Playwright test run" \
           --source "frontend" \
           --results playwright-report/*.xml \
-          -- npx playwright test
-          ^ space!
+          -- npm run test
         env: 
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
       - name: Archive test results
