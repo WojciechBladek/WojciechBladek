@@ -58,7 +58,7 @@ jobs:
           npx testmo automation:run:submit \
             --instance "$TESTMO_URL" \
             --project-id 1 \
-            --name "Playwright test run-date +'%Y-%m-%dT%H-%M-%S'" \
+            --name "Playwright test run-$(date +'%Y-%m-%dT%H-%M-%S')" \
             --source "frontend" \
             --results playwright-report/*.xml \
             -- npm run test
