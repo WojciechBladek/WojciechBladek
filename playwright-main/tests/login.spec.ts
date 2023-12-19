@@ -13,7 +13,7 @@ test.describe('Verify login', () => {
     await expect(
       loginPage.welcomeText,
       'User is logged and is on my acc page',
-    ).toContainText(UserData.userName);
+    ).toContainText('UserData.userName');
   });
   test('Reject login with incorrect password @GEN-S1-01', async ({
     loginPage,
