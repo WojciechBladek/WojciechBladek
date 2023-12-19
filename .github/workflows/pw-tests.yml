@@ -39,10 +39,10 @@ jobs:
           path: |
             node_modules
           key: node_modules-${{ hashFiles('package-lock.json') }}
-      - name: Install Testmo
-        run: npm install --no-save @testmo/testmo-cli
       - name: Install dependencies
         run: npm ci
+      - name: Install Testmo
+        run: npm install --no-save @testmo/testmo-cli
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
@@ -56,12 +56,12 @@ jobs:
       - name: Run Playwright tests
         run: |
           npx testmo automation:run:submit \
-          --instance https://playtestmo.testmo.net \
-          --project-id 1 \
-          --name "Playwright test run" \
-          --source "frontend" \
-          --results playwright-report/*.xml \
-          -- npm run test
+            --instance https://playtestmo.testmo.net \
+            --project-id 1 \
+            --name "Playwright test run" \
+            --source "frontend" \
+            --results playwright-report/*.xml \
+            -- npm run test
         env: 
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
       - name: Archive test results
