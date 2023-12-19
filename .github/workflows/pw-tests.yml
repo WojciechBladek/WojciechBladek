@@ -52,7 +52,16 @@ jobs:
         run: |
           echo "${{ secrets.ENV }}" > .env
       - name: Run Playwright tests
-        run: npm run test
+        run: |
+          echo export TESTMO_TOKEN="${{ secrets.TESTMO_TOKEN }}"
+          echo testmo automation:run:submit \
+          --instance https://playtestmo.testmo.net \
+          --project-id 1 \
+          --name "Playwright test run" \
+          --source "frontend" \
+          --results playwright-report/*.xml \
+          -- npx playwright test
+          ^ space!
       - name: Archive test results
         if: success() || failure()
         uses: actions/upload-artifact@v3
