@@ -27,7 +27,7 @@ test.describe('Verify shop', () => {
     await cartPage.increaseProductValue();
 
     // Assert
-    await expect(cartPage.quantityValueLocator).toHaveValue(
+    await expect(cartPage.quantityValueLocator.first()).toHaveValue(
       exceptedProductValue,
     );
     await expect(cartPage.cartUpdatedText).toHaveText(exceptedCartUpdatedText);

@@ -18,7 +18,13 @@ export default defineConfig({
     ['html'],
     ['github'],
     ['json', { outputFile: './playwright-report/results.json' }],
-    ['junit', { outputFile: './playwright-report/results.xml' }],
+    [
+      'junit',
+      {
+        outputFile: './playwright-report/results.xml',
+        embedAnnotationsAsProperties: true,
+      },
+    ],
   ],
   use: {
     baseURL: BASE_URL,
