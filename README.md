@@ -28,7 +28,7 @@ class QA {
   useMySkills(): void {
     console.log(`
           Quality assurance, Software testing, Manual Testing ,Automation
-          Testing ,Jira ,Postman ,Playwright ,Testing methodology ,Web Apps -
+          Testing ,Jira ,Postman ,Playwright ,Cypress ,Testing methodology ,Web Apps -
           Testing ,Scrum ,Agile ,Rest API ,JavaScript ,TypeScript ,SQL ,GIT,
           ISTQB knowledge ,DevTools ,CI/CD ,UML Sequnce Diagram ,Block Diagram
           `);
