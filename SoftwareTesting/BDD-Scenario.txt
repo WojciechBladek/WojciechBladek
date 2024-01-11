@@ -1,0 +1,52 @@
+Task 1)
+Note - Dependent Tests!!!
+Feature: Searching for a phrase on bing.com with content category filtering
+
+ Pre-Conditions:
+    Given: a user is on the bing.com website
+
+  Scenario: Searching for the "Prowly Media Monitoring" phrase with filtering by different content categories
+
+Test Case 1#:
+    When: the user enters the phrase "Prowly Media Monitoring" in the search bar
+    And: clicks the "Search" button
+    Then: the search results should contain the phrase "Prowly Media Monitoring"
+
+Test Case 2#:
+    When: the user selects the "All" category from the available options
+    And: clicks the "All" button
+    Then: the search results should contain diverse content types, such as text, images, videos, etc.
+
+Test Case 3#:
+    When: the user selects the "News" category from the available options
+    And: clicks the "News" button
+    Then: the search results should only contain content related to the "News" category
+
+Test Case 4#:
+    When: the user selects the "Videos" category from the available options
+    And: clicks the "Videos" button
+    Then: the search results should only contain video content related to the "Prowly Media Monitoring" phrase
+
+
+-----------------------------------------------------------------------------------------------------------------------
+Task 2)
+Note - Dependent Tests!!!
+Feature: Using "Copilot" in bing.com search to gather information about the media monitoring module on Prowly
+
+  Pre-Conditions:
+    Given: a user is on the bing.com website
+    And: In the search is written the content "Prowly media monitoring module"
+
+  Scenario: Using "Copilot" to search for information about the media monitoring module on Prowly
+
+Test Case 1#:
+    When: the user clicks the "Search" button
+    And: the user clicks the "Copilot" button
+    Then: the search results should include relevant information about the media monitoring module on Prowly
+
+Test Case 2#:
+    When: the user notices suggestions from "Copilot" related to the phrase
+    And: selects a relevant suggestion provided by "Copilot"
+    Then: the search results should be refined based on the selected "Copilot" suggestion
+
+
