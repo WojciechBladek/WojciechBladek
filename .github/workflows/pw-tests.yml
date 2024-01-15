@@ -41,8 +41,8 @@ jobs:
           key: node_modules-${{ hashFiles('package-lock.json') }}
       - name: Install dependencies
         run: npm ci
-      - name: Install Testmo
-        run: npm install --no-save @testmo/testmo-cli
+      # - name: Install Testmo
+      #   run: npm install --no-save @testmo/testmo-cli
       - name: Install Playwright Browsers
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
@@ -54,17 +54,17 @@ jobs:
         run: |
           echo "${{ secrets.ENV }}" > .env
       - name: Run Playwright tests
-        run: |
-          npx testmo automation:run:submit \
-            --instance "$TESTMO_URL" \
-            --project-id 1 \
-            --name "Playwright test run-$(date +'%Y-%m-%dT%H-%M-%S')" \
-            --source "frontend" \
-            --results playwright-report/*.xml \
-            -- npm run test
-        env:
-          TESTMO_URL: ${{ secrets.TESTMO_URL }}
-          TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+        run: npm run test
+          # npx testmo automation:run:submit \
+          #   --instance "$TESTMO_URL" \
+          #   --project-id 1 \
+          #   --name "Playwright test run-$(date +'%Y-%m-%dT%H-%M-%S')" \
+          #   --source "frontend" \
+          #   --results playwright-report/*.xml \
+          #   -- npm run test
+        # env:
+        #   TESTMO_URL: ${{ secrets.TESTMO_URL }}
+        #   TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
       - name: Archive test results
         if: success() || failure()
         uses: actions/upload-artifact@v3
