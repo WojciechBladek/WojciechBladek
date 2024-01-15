@@ -48,11 +48,8 @@ jobs:
         run: npx playwright install --with-deps
       - name: Create auth files for gmail tester
         run: |
-          # echo "${{ secrets.TOKEN }}" > token.json
+          echo "${{ secrets.TOKEN }}" > token.json
           echo "${{ secrets.CREDENTIALS }}" > credentials.json
-      - name: Create token for gmail tester
-        run: |
-          echo: node node_modules/gmail-tester/init.js credentials.json token.json "${{ secrets.EMAIL }}"
       - name: decode and save
         run: |
           echo "${{ secrets.ENV }}" > .env
