@@ -3,7 +3,7 @@ Note - Dependent Tests!!!
 Feature: Searching for a phrase on bing.com with content category filtering
 
  Pre-Conditions:
-    Given: a user is on the bing.com website
+    Given: A user is on the bing.com website
 
   Scenario: Searching for the "Prowly Media Monitoring" phrase with filtering by different content categories
 
@@ -34,7 +34,7 @@ Note - Dependent Tests!!!
 Feature: Using "Copilot" in bing.com search to gather information about the media monitoring module on Prowly
 
   Pre-Conditions:
-    Given: a user is on the bing.com website
+    Given: A user is on the bing.com website
     And: In the search is written the content "Prowly media monitoring module"
 
   Scenario: Using "Copilot" to search for information about the media monitoring module on Prowly
