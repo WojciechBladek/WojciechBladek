@@ -30,7 +30,8 @@ class QA {
           Quality assurance, Software testing, Manual Testing ,Automation
           Testing ,Jira ,Postman ,Playwright ,Cypress ,Testing methodology ,Web Apps -
           Testing ,Scrum ,Agile ,Rest API ,JavaScript ,TypeScript ,SQL ,GIT,
-          ISTQB knowledge ,DevTools ,CI/CD ,UML Sequnce Diagram ,Block Diagram
+          ISTQB knowledge ,DevTools ,CI/CD ,UML Sequnce Diagram ,Block Diagram ,
+          Java(wip), Appium + WDIO(wip), Selenium + WDIO(wip).
           `);
   }
   enjoyBetterQuality(): string {
