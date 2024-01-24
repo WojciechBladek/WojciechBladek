@@ -64,7 +64,7 @@ wojciech.enjoyBetterQuality();
 <img src="https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" height="22px">
 
 ## Projects coming soon
-
+- COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/WojciechBladek/tree/main/playwright-main
 - **automation tests using Cypress (second)** - https://github.com/WojciechBladek/WojciechBladek/tree/main/cypress
 - [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman
