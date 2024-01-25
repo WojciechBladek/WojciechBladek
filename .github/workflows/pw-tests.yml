@@ -54,7 +54,8 @@ jobs:
         run: |
           echo "${{ secrets.ENV }}" > .env
       - name: Run Playwright tests
-        run: npm run test
+        run:
+          npm run test
           # npx testmo automation:run:submit \
           #   --instance "$TESTMO_URL" \
           #   --project-id 1 \
