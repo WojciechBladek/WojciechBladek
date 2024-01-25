@@ -1,9 +1,9 @@
 name: Playwright Tests
 on:
   push:
-    branches: [main, master]
+    branches: [main, master, develop]
   pull_request:
-    branches: [main, master]
+    branches: [main, master, develop]
   workflow_dispatch: # MANUAL TRIGGER
 
 permissions:
@@ -54,7 +54,8 @@ jobs:
         run: |
           echo "${{ secrets.ENV }}" > .env
       - name: Run Playwright tests
-        run: npm run test
+        run:
+          npm run test
           # npx testmo automation:run:submit \
           #   --instance "$TESTMO_URL" \
           #   --project-id 1 \

@@ -5,7 +5,7 @@ import { Locator, Page } from '@playwright/test';
 export class CartPage extends BasePage {
   url = '/cart/';
 
-  incrementProductValue = this.page.getByRole('link', { name: '' })
+  incrementProductValue = this.page.getByRole('link', { name: '' });
   updateCartButton = this.page.getByRole('button', { name: 'Update cart' });
   quantityValueLocator = this.page.getByLabel('Quantity');
 

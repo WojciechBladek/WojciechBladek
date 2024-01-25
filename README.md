@@ -8,7 +8,7 @@
 class QA {
   firstName: string = 'Wojciech';
   lastName: string = 'Błądek';
-  age: number = 29;
+  age: number = 30;
   profession: string = 'Quality Assurance Engineer';
 
   emailMe(): void {
@@ -64,6 +64,7 @@ wojciech.enjoyBetterQuality();
 <img src="https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" height="22px">
 
 ## Projects coming soon
+
 - COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/WojciechBladek/tree/main/playwright-main
 - **automation tests using Cypress (second)** - https://github.com/WojciechBladek/WojciechBladek/tree/main/cypress
