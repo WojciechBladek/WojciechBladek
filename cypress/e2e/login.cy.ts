@@ -13,7 +13,7 @@ describe('Verify login', () => {
     loginPage.login(UserLoginModelData);
 
     //Assert
-    loginPage.welcomeText().should('include.text', UserData.userName);
+    loginPage.welcomeText.should('include.text', UserData.userName);
   });
 
   it('Reject login with incorrect password', () => {
@@ -27,12 +27,9 @@ describe('Verify login', () => {
     });
 
     // Assert
-    loginPage.userNameInput().invoke('attr', 'type').should('eq', 'text');
-    loginPage
-      .userPasswordInput()
-      .invoke('attr', 'type')
-      .should('eq', 'password');
+    loginPage.userNameInput.invoke('attr', 'type').should('eq', 'text');
+    loginPage.userPasswordInput.invoke('attr', 'type').should('eq', 'password');
 
-    loginPage.loginError().should('have.text', errorMessage);
+    loginPage.loginError.should('have.text', errorMessage);
   });
 });

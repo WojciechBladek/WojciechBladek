@@ -4,11 +4,11 @@ import { BasePage } from './base.page';
 export class CartPage extends BasePage {
   url = '/cart/';
 
-  cartIsEmptyText(): Locator {
+  get cartIsEmptyText(): Locator {
     return cy.get('.cart-empty');
   }
 
-  productName(): Locator {
+  get productName(): Locator {
     return cy.get('.product-name').find('a');
   }
 

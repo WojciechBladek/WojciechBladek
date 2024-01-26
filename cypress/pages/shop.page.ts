@@ -7,15 +7,15 @@ export class ShopPage extends BasePage {
   url = '/shop/';
   cartPage = new CartPage();
 
-  productsList(): Locator {
+  get productsList(): Locator {
     return cy.get('.products').find('.woocommerce-loop-product__title');
   }
 
-  myCartButton(): Locator {
+  get myCartButton(): Locator {
     return cy.get('.top-cart');
   }
 
-  addToCartButton(): Locator {
+  get addToCartButton(): Locator {
     return cy.get('.products').find('.button');
   }
 
@@ -24,13 +24,13 @@ export class ShopPage extends BasePage {
   }
 
   addRandomProductToMyCart(): void {
-    this.productsList().then(($txt) => {
+    this.productsList.then(($txt) => {
       const count = $txt.length - 1;
       const randomProduct = getRandomValue(count);
       const text = $txt.eq(randomProduct).text();
       cy.log(text);
       cy.wrap(text).as('exceptedName');
-      this.addToCartButton().eq(randomProduct).click();
+      this.addToCartButton.eq(randomProduct).click();
     });
   }
 }
