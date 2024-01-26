@@ -5,20 +5,20 @@ import { BasePage } from './base.page';
 export class LoginPage extends BasePage {
   url = '/my-account';
 
-  userNameInput(): Locator {
+  get userNameInput(): Locator {
     return cy.get('#username');
   }
-  userPasswordInput(): Locator {
+  get userPasswordInput(): Locator {
     return cy.get('#password');
   }
-  loginButton(): Locator {
-    return cy.get('.form-row').contains('Login');
+  get loginButton(): Locator {
+    return cy.get('[name="login"]');
   }
-  welcomeText(): Locator {
-    return cy.get('#post-8 > div.woocommerce > div > p').first();
+  get welcomeText(): Locator {
+    return cy.get('.woocommerce-MyAccount-content').first();
   }
-  loginError(): Locator {
-    return cy.get('#post-8 > div.woocommerce > ul > li');
+  get loginError(): Locator {
+    return cy.get('.woocommerce-error > li');
   }
 
   constructor() {
@@ -26,8 +26,8 @@ export class LoginPage extends BasePage {
   }
 
   login(userLoginData: UserLoginModel): void {
-    this.userNameInput().type(userLoginData.userEmail);
-    this.userPasswordInput().type(userLoginData.userPassword);
-    this.loginButton().click();
+    this.userNameInput.type(userLoginData.userEmail);
+    this.userPasswordInput.type(userLoginData.userPassword);
+    this.loginButton.click();
   }
 }

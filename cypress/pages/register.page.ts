@@ -5,29 +5,29 @@ import { BasePage } from './base.page';
 export class RegisterPage extends BasePage {
   url = '/my-account';
 
-  registerEmailInput(): Locator {
+  get registerEmailInput(): Locator {
     return cy.get('#reg_email');
   }
-  registerPasswordInput(): Locator {
+  get registerPasswordInput(): Locator {
     return cy.get('#reg_password');
   }
-  registerButton(): Locator {
-    return cy.get('input').contains('Register');
+  get registerButton(): Locator {
+    return cy.get('[name="register"]');
   }
-  welcomeText(): Locator {
-    return cy.get('#post-8 > div.woocommerce > div > p').first();
+  get welcomeText(): Locator {
+    return cy.get('.woocommerce-MyAccount-content > p').first();
   }
-  emailErrorText(): Locator {
-    return cy.get('#post-8 > div.woocommerce > ul > li');
+  get emailErrorText(): Locator {
+    return cy.get('.woocommerce-error > li');
   }
   constructor() {
     super();
   }
 
   registerNewUser(registerUserData: RegisterUserModel): void {
-    this.registerEmailInput().type(registerUserData.userEmail);
-    this.registerPasswordInput().type(registerUserData.userPassword);
-    this.registerButton().click();
+    this.registerEmailInput.type(registerUserData.userEmail);
+    this.registerPasswordInput.type(registerUserData.userPassword);
+    this.registerButton.click();
   }
 
   expectedWelcomeText(userName: string): string {

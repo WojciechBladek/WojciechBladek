@@ -17,9 +17,10 @@ describe('Verify register', () => {
     registerPage.registerNewUser(registerUserData);
 
     // Assert
-    registerPage
-      .welcomeText()
-      .should('have.text', registerPage.expectedWelcomeText(userName));
+    registerPage.welcomeText.should(
+      'have.text',
+      registerPage.expectedWelcomeText(userName),
+    );
   });
 
   it('login with new account', () => {
@@ -30,9 +31,10 @@ describe('Verify register', () => {
     loginPage.login(registerUserData);
 
     // Assert
-    registerPage
-      .welcomeText()
-      .should('have.text', registerPage.expectedWelcomeText(userName));
+    registerPage.welcomeText.should(
+      'have.text',
+      registerPage.expectedWelcomeText(userName),
+    );
   });
 
   it('not register with incorrect data - email not provided', () => {
@@ -45,16 +47,14 @@ describe('Verify register', () => {
     registerPage.registerNewUser(registerUserData);
 
     // Assert
-    registerPage
-      .registerEmailInput()
+    registerPage.registerEmailInput
       .invoke('attr', 'type')
       .should('eq', 'email');
-    registerPage
-      .registerPasswordInput()
+    registerPage.registerPasswordInput
       .invoke('attr', 'type')
       .should('eq', 'password');
 
-    registerPage.emailErrorText().should('be.visible');
-    registerPage.emailErrorText().should('have.text', errorMessage);
+    registerPage.emailErrorText.should('be.visible');
+    registerPage.emailErrorText.should('have.text', errorMessage);
   });
 });
