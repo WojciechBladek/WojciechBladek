@@ -67,6 +67,6 @@ wojciech.enjoyBetterQuality();
 
 - COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/Playwright
-- **automation tests using Cypress (second)** - https://github.com/WojciechBladek/WojciechBladek/tree/main/cypress (repo switch cooming soon)
+- **automation tests using Cypress (second)** - https://github.com/WojciechBladek/Cypress
 - [work in progress] **Tests in Postman** - https://github.com/WojciechBladek/WojciechBladek/tree/main/Postman
 - [work in progress] **Here u can find something cool about Software Testing** - https://github.com/WojciechBladek/WojciechBladek/tree/main/SoftwareTesting
