@@ -4,12 +4,7 @@
     "module": "CommonJS",
     "lib": ["ES2021", "dom", "ES2020"],
     "types": ["cypress", "node"],
-    "baseUrl": ".",
-    "paths": {
-      "@_playwright-main/*": ["playwright-main/*"],
-      "@_pw-config": ["playwright.config.ts"],
-      "@_config/*": ["config/*"]
-    }
+    "baseUrl": "."
   },
   "sourceMap": true,
   "include": ["**/*.ts"]

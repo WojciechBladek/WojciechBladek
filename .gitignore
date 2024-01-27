@@ -1,10 +1,4 @@
 node_modules/
-/test-results/
-/playwright-report/
-/playwright/.cache/
-playwright.env.json
-testUsedInComercialProject/playwright/.auth
 .env
-playwright/.auth
 credentials.json
 token.json
