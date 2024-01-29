@@ -55,13 +55,22 @@ wojciech.enjoyBetterQuality();
 ## Expertise
 
 [![Playwright](https://img.shields.io/badge/-Playwright-45ba4b?logo=playwright&logoColor=white&labelColor=45ba4b&style=flat)](https://github.com/microsoft/playwright)
+[![Cypress.io](https://img.shields.io/badge/%20Cypress-04C38E.svg)](https://www.cypress.io/)
 [![Postman](https://img.shields.io/badge/-Postman-FF6C37?logo=postman&logoColor=white&labelColor=FF6C37&style=flat)](https://www.postman.com/)
+<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" height="22px">
+<img src="https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=apple&logoColor=white" height="22px">
+<img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" height="22px">
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" height="22px">
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" height="22px">
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" height="22px">
 <img src="https://img.shields.io/badge/chai.js-323330?style=for-the-badge&logo=chai&logoColor=red" height="22px">
+<img src="https://img.shields.io/badge/mocha.js-323330?style=for-the-badge&logo=mocha&logoColor=Brown" height="22px">
 <img src="https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white" height="22px">
 <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" height="22px">
 <img src="https://img.shields.io/badge/jira-%230A0FFF.svg?style=for-the-badge&logo=jira&logoColor=white" height="22px">
+<img src="https://iconape.com/wp-content/png_logo_vector/appium-logo.png" height="22px">
+<img src="https://asset.brandfetch.io/idV7ZoyErg/idjjDL4vNp.svg?updated=1700632173304" height="22px">
+
 
 ## Projects coming soon
 
