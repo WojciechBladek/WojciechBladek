@@ -5,47 +5,26 @@
   "main": "index.js",
   "scripts": {
     "PT1": "newman run ./Postman/test1.postman.json -e ./Postman/DEV.postman_environment.json —-global-var",
-    "TLogin": "npx playwright test Playwright/tests/login.spec.ts",
-    "TLoginDebug": "npx playwright test Playwright/tests/login.spec.ts --debug",
     "format": "npx prettier --write .",
     "format:check": "npx prettier . --check \"!**.ts\"",
-    "lint": "npx eslint . --ext .ts --max-warnings=0",
-    "test": "npx playwright test",
-    "test:headed": "npm run test -- --headed",
-    "test:ui": "npm run test -- --ui",
-    "test:all-projects": "npx playwright test --project 'chromium-logged' 'chromium-non-logged'",
-    "show-report": "npx playwright show-report",
-    "cypress:open": "cypress open",
-    "cypress:all-tests": "npx cypress run"
+    "lint": "npx eslint . --ext .ts --max-warnings=0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
-    "@playwright/test": "^1.40.1",
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/node": "^20.7.1",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "chai": "^4.3.7",
-    "cypress": "^13.2.0",
-    "dotenv": "^16.3.1",
     "eslint": "^8.48.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-cypress": "^2.15.1",
-    "eslint-plugin-playwright": "^0.16.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "imap": "^0.8.17",
-    "mailparser": "^3.6.5",
     "newman": "^5.1.2",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "gmail-tester": "^1.3.8",
-    "playwright": "^1.37.1",
-    "prettier": "3.0.3",
-    "punycode": "^2.3.1"
   }
 }

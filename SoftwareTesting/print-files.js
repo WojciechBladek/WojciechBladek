@@ -1,10 +1,12 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
+
 const { readFileSync } = fs;
 
-const readTestCase = readFileSync('./README-test-case.md', {
+const readTestCase = readFileSync('./SoftwareTesting/README-test-case.md', {
   encoding: 'utf8',
 });
-const readBugReport = readFileSync('./README-bug-report.md', {
+const readBugReport = readFileSync('./SoftwareTesting/README-bug-report.md', {
   encoding: 'utf8',
 });
 console.log(readTestCase);
