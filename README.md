@@ -8,7 +8,7 @@
 class QA {
   firstName: string = 'Wojciech';
   lastName: string = 'Błądek';
-  age: number = 30;
+  age: number = 31;
   profession: string = 'Quality Assurance Engineer';
 
   emailMe(): void {
@@ -73,7 +73,7 @@ wojciech.enjoyBetterQuality();
 
 
 ## Projects coming soon
-
+- **Newest!!! - Project Playwright UI + API** - https://github.com/WojciechBladek/Playwright-Project-Template
 - COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/Playwright
 - **automation tests using Playwright UI + API** - https://github.com/WojciechBladek/Playwright-UI-API
