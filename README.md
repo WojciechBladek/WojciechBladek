@@ -8,31 +8,32 @@
 class QA {
   firstName: string = 'Wojciech';
   lastName: string = 'Błądek';
-  age: number = 31;
+  age: number = 32;
   profession: string = 'Quality Assurance Engineer';
 
-  emailMe(): void {
-    console.log('wojciechbladekk@gmail.com');
+  emailMe(): string {
+    return 'wojciechbladekk@gmail.com';
   }
 
-  aboutMe(): void {
-    console.log(`
+  aboutMe(): string {
+    return `
           My position is Quality Assurance, I am in charge of maintaining
            quality in projects, I started the adventure of my profession as
             early as 2021, since then I develop my skills every day until
             today
           I am passionate when it comes to software testing, my most important
            trait in this profession by far is meticulousness, perfectionism,
-           communicativeness`);
+           communicativeness`;
   }
-  useMySkills(): void {
-    console.log(`
+  useMySkills(): string {
+    return `
           Quality assurance, Software testing, Manual Testing ,Automation
           Testing ,Jira ,Postman ,Playwright ,Cypress ,Testing methodology ,Web Apps -
           Testing ,Scrum ,Agile ,Rest API ,JavaScript ,TypeScript ,SQL ,GIT,
           ISTQB knowledge ,DevTools ,CI/CD ,UML Sequnce Diagram ,Block Diagram ,
-          Java(wip), Appium + WDIO(wip), Selenium + WDIO(wip).
-          `);
+          Java(wip), Appium + WDIO(wip), Selenium + WDIO(wip), SuperTest Api TS + Playwright,
+          Github CI/CD, Azure CI/CD, Jenkins.
+          `;
   }
   enjoyBetterQuality(): string {
     return 'Happy Clients';
@@ -73,7 +74,7 @@ wojciech.enjoyBetterQuality();
 
 
 ## Projects coming soon
-- **Newest!!! - Project Playwright UI + API** - https://github.com/WojciechBladek/Playwright-Project-Template
+- **Newest!!! - Project Playwright UI + API (2 options Native PW API, and SuperTest API with PW!!!) FULL CONFIGURED PROJECT!!!** - https://github.com/WojciechBladek/Playwright-Project-Template
 - COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/Playwright
 - **automation tests using Playwright UI + API** - https://github.com/WojciechBladek/Playwright-UI-API
