@@ -74,6 +74,7 @@ wojciech.enjoyBetterQuality();
 
 
 ## Projects coming soon
+- **MCP SERVER** - https://github.com/WojciechBladek/Simple-MCP-Server
 - **Newest!!! - Project Playwright UI + API (2 options Native PW API, and SuperTest API with PW!!!) FULL CONFIGURED PROJECT!!!** - https://github.com/WojciechBladek/Playwright-Project-Template
 - COOMING SOON APPIUM 2.0 + WEBDRIVERIO (mobile automation)
 - **automation tests using Playwright (main)** - https://github.com/WojciechBladek/Playwright
