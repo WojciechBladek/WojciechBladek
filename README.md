@@ -1,6 +1,6 @@
 ## **Hi, i'm Wojciech &#x1F44B;**
 
-### Quality Assurance Engineer
+### Quality Assurance Engineer | SDET | Test Architect | AI
 
 ## About me
 
